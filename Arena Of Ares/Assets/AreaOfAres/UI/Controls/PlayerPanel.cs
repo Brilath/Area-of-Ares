@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using AreaOfAres.Network;
 using AreaOfAres.Unit.Data;
+using Photon.Realtime;
 
 namespace AreaOfAres.UI.Controls
 {
@@ -16,16 +17,16 @@ namespace AreaOfAres.UI.Controls
         [SerializeField] private Button _rightArrow;
         [SerializeField] private GameObject _ready;
         [SerializeField] private PlayerSettings _playerSettings;
-        public RoomPlayer _player;
+        [SerializeField] private Player _player;
 
-        public void Initialize(RoomPlayer player)
+        public void Initialize(Player player)
         {
             _player = player;
 
             _name.gameObject.SetActive(true);
             _characterImage.gameObject.SetActive(true);
 
-            if (_player.PhotonPlayer.IsLocal)
+            if (_player.IsLocal)
             {
                 _leftArrow.gameObject.SetActive(true);
                 _rightArrow.gameObject.SetActive(true);
@@ -34,7 +35,7 @@ namespace AreaOfAres.UI.Controls
         }
         public void OnReadyClicked()
         {
-            _player.Ready = true;
+            //_player.Ready = true;
         }
     }
 }

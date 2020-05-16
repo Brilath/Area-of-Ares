@@ -105,6 +105,14 @@ namespace AreaOfAres.UI
             roomCoroutine = StartCoroutine(ZoomCanvas(_roomCanvas, _roomStartPosition));
         }
 
+        public void HideAllCanvases()
+        {
+            HideRoomCanvas();
+            HidePlayCanvas();
+            HideCharactersCanvas();
+            HideCreditsCanvas();
+        }
+
         private IEnumerator ZoomCanvas(Canvas canvas, Vector3 target)
         {
             float zoomTime = 3f;

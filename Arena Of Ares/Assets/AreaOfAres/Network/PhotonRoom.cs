@@ -14,8 +14,8 @@ namespace AreaOfAres.Network
         [SerializeField] private PhotonView _photonView;
 
 
-        public static event Action<RoomPlayer> OnRoomConnected = delegate { };
-        public static event Action<RoomPlayer> OnRoomDisconnected = delegate { };
+        public static event Action<Player> OnRoomConnected = delegate { };
+        public static event Action<Player> OnRoomDisconnected = delegate { };
         public static event Action OnNewJoinRoom = delegate { };
 
         private void Awake()

@@ -994,7 +994,7 @@ GameObject:
   m_Component:
   - component: {fileID: 281225319}
   m_Layer: 5
-  m_Name: Ready Display
+  m_Name: Player Count
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2485,7 +2485,7 @@ PrefabInstance:
     - target: {fileID: 6385388889703693764, guid: 465fe8313d8895d4ca1bec410afac4e2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CreateRoom
+      value: OnCreateRoomButtonClicked
       objectReference: {fileID: 0}
     - target: {fileID: 6385388889703693764, guid: 465fe8313d8895d4ca1bec410afac4e2,
         type: 3}
@@ -6613,7 +6613,7 @@ GameObject:
   - component: {fileID: 1711543330}
   - component: {fileID: 1711543329}
   m_Layer: 5
-  m_Name: ReadyText
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6656,7 +6656,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Players Ready 4 / 4
+  m_text: Player Count 4 / 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -6684,7 +6684,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 30.85
+  m_fontSize: 32.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6725,7 +6725,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 10.880249, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1711543329}
-    characterCount: 19
+    characterCount: 18
     spriteCount: 0
     spaceCount: 4
     wordCount: 4
@@ -6998,8 +6998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerPanels: {fileID: 146850779}
-  _playerPanel: {fileID: 7278837954028424825, guid: 31529664b5144184aa49aa47d45dcb88,
-    type: 3}
+  _playerPanel: {fileID: 0}
 --- !u!114 &1783594328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8005,7 +8004,7 @@ PrefabInstance:
     - target: {fileID: 6385388889703693764, guid: 465fe8313d8895d4ca1bec410afac4e2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: JoinRoom
+      value: OnJoinRoomButtonClicked
       objectReference: {fileID: 0}
     - target: {fileID: 6385388889703693764, guid: 465fe8313d8895d4ca1bec410afac4e2,
         type: 3}
@@ -8273,18 +8272,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 7278837952791414140}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2059225863 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7278837954028424827, guid: 31529664b5144184aa49aa47d45dcb88,
-    type: 3}
-  m_PrefabInstance: {fileID: 7278837952791414140}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47db8606ce5f15147ab244b1ae90898d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2083274159
 GameObject:
   m_ObjectHideFlags: 0
@@ -8609,7 +8596,7 @@ GameObject:
   - component: {fileID: 2136457866}
   - component: {fileID: 2136457867}
   m_Layer: 5
-  m_Name: Main Menu Canvas
+  m_Name: Game Canvases
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8846,16 +8833,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _photonView: {fileID: 0}
+  _isConnectedToPhoton: 0
   _ignInput: {fileID: 619674603}
   _roomInput: {fileID: 2000978839}
   _errorText: {fileID: 631158896}
   _playButton: {fileID: 1331312852}
-  MIN_CHARS: 2
-  menuController: {fileID: 0}
+  _menuController: {fileID: 0}
+  _gameMode: 
   _roomNameText: {fileID: 1242009357}
+  _playerCountText: {fileID: 1711543329}
   _playersList: {fileID: 146850780}
   _refreshRate: 0
   _startButton: {fileID: 1615628897}
+  _roomPlayerContainer: {fileID: 146850779}
+  _roomPlayerPanel: {fileID: 7278837954028424825, guid: 31529664b5144184aa49aa47d45dcb88,
+    type: 3}
 --- !u!114 &2136457866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8885,7 +8877,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136457857}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9c08952abe8f8543b4cb908ac98a68c, type: 3}
   m_Name: 
@@ -9507,6 +9499,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 7278837954028424825, guid: 31529664b5144184aa49aa47d45dcb88,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7278837954028424826, guid: 31529664b5144184aa49aa47d45dcb88,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9565,22 +9562,22 @@ PrefabInstance:
     - target: {fileID: 7278837954028424826, guid: 31529664b5144184aa49aa47d45dcb88,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7278837954028424826, guid: 31529664b5144184aa49aa47d45dcb88,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 7278837954028424826, guid: 31529664b5144184aa49aa47d45dcb88,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7278837954028424826, guid: 31529664b5144184aa49aa47d45dcb88,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7278837954028424826, guid: 31529664b5144184aa49aa47d45dcb88,
         type: 3}
@@ -9590,7 +9587,7 @@ PrefabInstance:
     - target: {fileID: 7278837954028424826, guid: 31529664b5144184aa49aa47d45dcb88,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7278837954028424826, guid: 31529664b5144184aa49aa47d45dcb88,
         type: 3}
@@ -9600,7 +9597,7 @@ PrefabInstance:
     - target: {fileID: 7278837954028424826, guid: 31529664b5144184aa49aa47d45dcb88,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7278837954028424826, guid: 31529664b5144184aa49aa47d45dcb88,
         type: 3}
@@ -9616,36 +9613,6 @@ PrefabInstance:
         type: 3}
       propertyPath: viewIdField
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5006017769042664387, guid: 31529664b5144184aa49aa47d45dcb88,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5006017769042664387, guid: 31529664b5144184aa49aa47d45dcb88,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5006017769042664387, guid: 31529664b5144184aa49aa47d45dcb88,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5006017769042664387, guid: 31529664b5144184aa49aa47d45dcb88,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2059225863}
-    - target: {fileID: 5006017769042664387, guid: 31529664b5144184aa49aa47d45dcb88,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnReadyClicked
-      objectReference: {fileID: 0}
-    - target: {fileID: 5006017769042664387, guid: 31529664b5144184aa49aa47d45dcb88,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31529664b5144184aa49aa47d45dcb88, type: 3}

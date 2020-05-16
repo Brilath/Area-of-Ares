@@ -4,16 +4,17 @@ using UnityEngine;
 using AreaOfAres.Network;
 using System;
 using AreaOfAres.UI.Controls;
+using Photon.Realtime;
 
 public class RoomCanvasController : MonoBehaviour
 {
     [SerializeField] private GameObject _playerPanels;
     [SerializeField] private PlayerPanel _playerPanel;
-    [SerializeField] private Dictionary<RoomPlayer, PlayerPanel> _panels;
+    [SerializeField] private Dictionary<Player, PlayerPanel> _panels;
 
     private void Awake()
     {
-        _panels = new Dictionary<RoomPlayer, PlayerPanel>();
+        _panels = new Dictionary<Player, PlayerPanel>();
     }
     private void OnEnable()
     {
@@ -27,13 +28,13 @@ public class RoomCanvasController : MonoBehaviour
         PhotonRoom.OnRoomDisconnected -= HandleOnRoomDisconnected;
     }
 
-    private void HandleOnRoomConnected(RoomPlayer player)
+    private void HandleOnRoomConnected(Player player)
     {
         var panel = Instantiate(_playerPanel, _playerPanels.transform);
         panel.Initialize(player);
         _panels.Add(player, panel);
     }
-    private void HandleOnRoomDisconnected(RoomPlayer player)
+    private void HandleOnRoomDisconnected(Player player)
     {
         for (int i = 0; i > _panels.Count; i++)
         {
