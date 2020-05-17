@@ -22,6 +22,9 @@ public class AoAGameManager : MonoBehaviour
                 PhotonNetwork.Instantiate(_playerPrefabs[(int)playerSelection].name, startingPosition, Quaternion.identity);
             }
             playerPosition++;
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 

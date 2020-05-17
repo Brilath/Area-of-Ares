@@ -67,5 +67,11 @@ namespace AreaOfAres.UI
                 AudioListener.volume = _settings.MasterVolume.Amount;
             }
         }
+
+        private void OnDestroy()
+        {
+            _settings.MasterVolume.OnValueChanged -= HandleMasterVolumeChange;
+            _settings.Mute.OnFlagChanged -= HandleMuteColumeToggle;
+        }
     }
 }

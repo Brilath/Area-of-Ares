@@ -25,5 +25,10 @@ namespace AreaOfAres.UI
         {
             _audio.volume = _soundSettings.SFXVolume.Amount;
         }
+
+        private void OnDestroy()
+        {
+            _soundSettings.SFXVolume.OnValueChanged -= HandleVolumeChange;
+        }
     }
 }

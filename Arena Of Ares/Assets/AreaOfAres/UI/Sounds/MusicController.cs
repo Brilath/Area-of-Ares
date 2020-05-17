@@ -25,5 +25,10 @@ namespace AreaOfAres.UI
         {
             _audio.volume = _soundSettings.MusicVolume.Amount;
         }
+
+        private void OnDestroy()
+        {
+            _soundSettings.MusicVolume.OnValueChanged -= HandleVolumeChange;
+        }
     }
 }

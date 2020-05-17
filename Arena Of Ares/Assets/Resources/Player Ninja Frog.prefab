@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: -4396097858906346978}
   - component: {fileID: 7169212230769533299}
   - component: {fileID: 7342888630680935336}
+  - component: {fileID: 953420155205913365}
   m_Layer: 0
   m_Name: Player Ninja Frog
   m_TagString: Player
@@ -317,6 +318,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _walkClip: {fileID: 8300000, guid: 0e05e6e740c612c47b5e8db6051aab74, type: 3}
   _jumpClip: {fileID: 8300000, guid: b95b8d91e4a330444bdbb845e483673b, type: 3}
+  _healClip: {fileID: 8300000, guid: 36767ccee42495e418f46841d9600606, type: 3}
+  _damageClip: {fileID: 8300000, guid: d22c4de06c8d08845a82ac83b8e9b865, type: 3}
   _audioSource: {fileID: 0}
   _isPlaying: 0
 --- !u!82 &7169212230769533299
@@ -429,6 +432,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _soundSettings: {fileID: 11400000, guid: 70ae48360bf594f48a32633910610523, type: 2}
   _audio: {fileID: 0}
+--- !u!114 &953420155205913365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861227095994382391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e89c6527a16b440ac04265fbe39dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 3
+  _currentHealth: 0
+  _modifiable: 0
+  _modifyCooldown: 0
 --- !u!1 &8507119875269324186
 GameObject:
   m_ObjectHideFlags: 0
