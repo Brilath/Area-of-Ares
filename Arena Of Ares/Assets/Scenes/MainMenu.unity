@@ -8901,18 +8901,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136457857}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9c08952abe8f8543b4cb908ac98a68c, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f582be5c25c5034e817345ea90fa2a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playButton: {fileID: 1331312852}
-  _playerPanel: {fileID: 0}
-  _characterPanel: {fileID: 0}
-  _roomNameText: {fileID: 0}
-  _playersList: {fileID: 0}
-  _refreshRate: 0
-  _startButton: {fileID: 0}
+  _cursorTexture: {fileID: 2800000, guid: c0b55e16840fbb642b2d8836c473dc39, type: 3}
 --- !u!1 &63010179980812836
 GameObject:
   m_ObjectHideFlags: 0
