@@ -4,10 +4,12 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
 
-public class AoAGameManager : MonoBehaviour
+public class AoAGameManager : MonoBehaviourPun
 {
     [SerializeField] private GameObject[] _playerPrefabs;
     [SerializeField] private Transform[] _startingPositions;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +21,8 @@ public class AoAGameManager : MonoBehaviour
             object playerSelection;
             if (PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue(NetworkCustomSettings.PLAYER_SELECTION_NUMBER, out playerSelection))
             {
-                PhotonNetwork.Instantiate(_playerPrefabs[(int)playerSelection].name, startingPosition, Quaternion.identity);
+                GameObject playerGO = PhotonNetwork.Instantiate(_playerPrefabs[(int)playerSelection].name, startingPosition, Quaternion.identity);
             }
-            playerPosition++;
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

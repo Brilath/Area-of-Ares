@@ -9,6 +9,6 @@ public class CursorController : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.SetCursor(_cursorTexture, new Vector2(10, 10), CursorMode.Auto);
+        Cursor.SetCursor(_cursorTexture, new Vector2(80, 20), CursorMode.Auto);
     }
 }
