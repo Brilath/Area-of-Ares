@@ -72,7 +72,7 @@ namespace AreaOfAres.Network
             }
             else
             {
-                _errorText.text = "Enter IGN";
+                _errorText.text = "Enter Valid IGN";
             }
         }
         public void OnJoinRoomButtonClicked()
@@ -96,7 +96,7 @@ namespace AreaOfAres.Network
             }
             else
             {
-                _errorText.text = "Enter IGN";
+                _errorText.text = "Enter Valid IGN";
             }
         }
         #endregion
