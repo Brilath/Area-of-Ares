@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: -6475874471894658633}
   - component: {fileID: 5386475513464767306}
   - component: {fileID: 2633732902040764283}
+  - component: {fileID: -7758451566886323259}
   m_Layer: 0
   m_Name: Player Virtual Guy
   m_TagString: Player
@@ -562,6 +563,21 @@ MonoBehaviour:
   _currentHealth: 0
   _modifiable: 0
   _modifyCooldown: 0
+--- !u!114 &-7758451566886323259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3042833568675731102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b3a006d6a0528b46b9993542a598e53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxFruit: 99
+  _currentFruit: 0
+  _modifiable: 0
 --- !u!1 &4838488277763732682
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,7 +635,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1722402963
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &4838488277763732695

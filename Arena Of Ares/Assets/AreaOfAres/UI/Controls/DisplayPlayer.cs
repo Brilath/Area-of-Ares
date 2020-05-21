@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using Photon.Pun;
 
-public class DisplayPlayer : MonoBehaviour
+public class DisplayPlayer : MonoBehaviourPun
 {
     [SerializeField] private int playerID;
     [SerializeField] private int fruitCount;
@@ -22,15 +23,37 @@ public class DisplayPlayer : MonoBehaviour
         UpdateFruitCount(id, fruitCount);
         playerName.text = name;
         playerNumberImage.color = color;
+
+        Fruit.OnCollected += HandleFruitCollected;
+        Fruit.OnDropped += HandleFruitDropped;
     }
 
+    private void HandleFruitDropped(Fruit fruit, int id)
+    {
+        UpdateFruitCount(id, fruit.Amount);
+    }
 
+    private void HandleFruitCollected(Fruit fruit, int id)
+    {
+        //object[] parms = new object[] { fruit.Amount, id };
+        photonView.RPC("UpdateFruitCount", RpcTarget.AllBuffered, id, fruit.Amount);
+    }
+
+    [PunRPC]
     public void UpdateFruitCount(int id, int amount)
     {
+        Debug.Log($"Updating player {id} UI by {amount}");
         if (playerID == id)
         {
+            fruitCount += amount;
             fruitCount = Mathf.Clamp(fruitCount, 0, 99);
             fruitCountText.text = fruitCount.ToString("D2");
         }
+    }
+
+    private void OnDestroy()
+    {
+        Fruit.OnCollected -= HandleFruitCollected;
+        Fruit.OnDropped -= HandleFruitDropped;
     }
 }

@@ -426,7 +426,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1722402963
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &6746453919031715113
@@ -492,6 +492,7 @@ GameObject:
   - component: {fileID: -8247549100530029191}
   - component: {fileID: 7893754312772609222}
   - component: {fileID: -3267599532253970154}
+  - component: {fileID: 863792530}
   m_Layer: 0
   m_Name: Player Mask Dude
   m_TagString: Player
@@ -909,3 +910,18 @@ MonoBehaviour:
   _currentHealth: 0
   _modifiable: 0
   _modifyCooldown: 0
+--- !u!114 &863792530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6937492362829861123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b3a006d6a0528b46b9993542a598e53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxFruit: 99
+  _currentFruit: 0
+  _modifiable: 0

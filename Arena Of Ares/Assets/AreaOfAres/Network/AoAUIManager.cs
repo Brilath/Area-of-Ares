@@ -24,14 +24,6 @@ public class AoAUIManager : MonoBehaviour
                 playerUI.Intitalize(playerID, playerName, playerColor);
                 playerUI.gameObject.SetActive(true);
             }
-
-            // int playerID = PhotonNetwork.LocalPlayer.ActorNumber;
-            // string playerName = PhotonNetwork.LocalPlayer.NickName;
-            // Color playerColor = _playerColors[playerID - 1];
-            // DisplayPlayer playerUI = _playerUIs[playerID - 1];
-
-            // playerUI.Intitalize(playerID, playerName, playerColor);
-            // playerUI.gameObject.SetActive(true);
         }
     }
 }

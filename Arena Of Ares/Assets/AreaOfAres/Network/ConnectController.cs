@@ -50,6 +50,9 @@ namespace AreaOfAres.Network
             _gameMode = NetworkCustomSettings.SURVIVAL_MODE;
             _playerList = new Dictionary<int, GameObject>();
             _isConnectedToPhoton = false;
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
         private void Update()
@@ -322,9 +325,10 @@ namespace AreaOfAres.Network
         private bool IsValidPlayerName()
         {
             bool isValid = false;
+            Debug.Log("CheckingIGN");
 
             if (_ignInput.text.Length > NetworkCustomSettings.PLAYER_NAME_MIN &&
-                _ignInput.text.Length <= NetworkCustomSettings.PLAYER_NAME_MAX)
+                _ignInput.text.Length - 1 <= NetworkCustomSettings.PLAYER_NAME_MAX)
             {
                 isValid = true;
             }

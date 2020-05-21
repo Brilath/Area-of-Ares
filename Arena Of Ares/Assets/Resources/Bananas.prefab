@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -3032134679096459583}
   - component: {fileID: 2534082786300012043}
   - component: {fileID: -3607241950487554695}
+  - component: {fileID: 7199565346571372350}
   m_Layer: 0
   m_Name: Bananas
   m_TagString: Untagged
@@ -246,3 +247,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _soundSettings: {fileID: 11400000, guid: 70ae48360bf594f48a32633910610523, type: 2}
   _audio: {fileID: 0}
+--- !u!114 &7199565346571372350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6151446329916031856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de856c8722dc76840a6da6c25ab6ff30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Amount: 1

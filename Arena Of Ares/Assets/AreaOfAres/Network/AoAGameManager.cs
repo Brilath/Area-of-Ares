@@ -14,6 +14,7 @@ public class AoAGameManager : MonoBehaviourPun
 
     [SerializeField] private float _gameTimeLimit;
     [SerializeField] private float _gameTimeLeft;
+    [SerializeField] private bool _gameEnding;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,8 @@ public class AoAGameManager : MonoBehaviourPun
             int playerPosition = PhotonNetwork.LocalPlayer.ActorNumber;
             Vector3 startingPosition = _startingPositions[playerPosition - 1].position;
             _gameTimeLeft = _gameTimeLimit;
+            _gameEnding = false;
+            PhotonNetwork.AutomaticallySyncScene = true;
 
             object playerSelection;
             if (PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue(NetworkCustomSettings.PLAYER_SELECTION_NUMBER, out playerSelection))
@@ -40,8 +43,9 @@ public class AoAGameManager : MonoBehaviourPun
         _gameTimeLeft = Mathf.Clamp(_gameTimeLeft, 0, _gameTimeLimit);
         UpdateClock();
 
-        if (_gameTimeLeft <= 0)
+        if (_gameTimeLeft <= 0 && !_gameEnding)
         {
+            _gameEnding = true;
             StartCoroutine("EndGame");
         }
     }
@@ -56,12 +60,16 @@ public class AoAGameManager : MonoBehaviourPun
     {
         _gameEndScreen.SetActive(true);
         yield return new WaitForSeconds(10);
-        LoadMainMenu();
+        if (PhotonNetwork.IsMasterClient)
+        {
+            LoadMainMenu();
+        }
+
     }
 
     public void LoadMainMenu()
     {
-        PhotonNetwork.LeaveRoom();
         PhotonNetwork.LoadLevel(0);
+        PhotonNetwork.LeaveRoom();
     }
 }

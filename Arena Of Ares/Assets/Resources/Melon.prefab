@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -218249954688335172}
   - component: {fileID: 8545208117190994184}
   - component: {fileID: 8717718551839465925}
+  - component: {fileID: 7368270036395437126}
   m_Layer: 0
   m_Name: Melon
   m_TagString: Untagged
@@ -246,3 +247,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _soundSettings: {fileID: 11400000, guid: 70ae48360bf594f48a32633910610523, type: 2}
   _audio: {fileID: 0}
+--- !u!114 &7368270036395437126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4233814752136225856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de856c8722dc76840a6da6c25ab6ff30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Amount: 1

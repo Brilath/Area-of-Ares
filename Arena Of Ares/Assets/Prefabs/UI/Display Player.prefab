@@ -216,7 +216,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 3
   m_firstOverflowCharacterIndex: -1
@@ -690,8 +690,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6816475410791498520}
   - component: {fileID: 6102047893239627189}
+  - component: {fileID: 3222460649594118213}
   m_Layer: 5
-  m_Name: Display Player 1
+  m_Name: Display Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -738,6 +739,28 @@ MonoBehaviour:
   playerNumberText: {fileID: 6816475410540185971}
   playerName: {fileID: 6816475409765377470}
   fruitCountText: {fileID: 6816475411160437650}
+--- !u!114 &3222460649594118213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6816475410791498521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6816475410836170421
 GameObject:
   m_ObjectHideFlags: 0
