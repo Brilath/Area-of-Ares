@@ -40,8 +40,7 @@ namespace AreaOfAres.Network
         #region Unity Methods
         private void Awake()
         {
-            PhotonNetwork.AutomaticallySyncScene = true;
-            PhotonNetwork.ConnectUsingSettings();
+            SetupPhotonConnection();
 
             _menuController = GetComponent<MainMenuController>();
             _ro.MaxPlayers = 4;
@@ -54,6 +53,7 @@ namespace AreaOfAres.Network
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
+
 
         private void Update()
         {
@@ -277,6 +277,22 @@ namespace AreaOfAres.Network
         #endregion
 
         #region Private Methods
+        private static void SetupPhotonConnection()
+        {
+            PhotonNetwork.AutomaticallySyncScene = true;
+
+            if (!PhotonNetwork.IsConnected)
+            {
+                PhotonNetwork.ConnectUsingSettings();
+            }
+            else
+            {
+                if (PhotonNetwork.InRoom)
+                {
+                    PhotonNetwork.LeaveRoom();
+                }
+            }
+        }
         private void CreateCustomRandomRoom()
         {
             if (string.IsNullOrEmpty(_gameMode)) return;

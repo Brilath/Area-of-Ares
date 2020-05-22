@@ -15,6 +15,7 @@ public class AoAGameManager : MonoBehaviourPun
     [SerializeField] private float _gameTimeLimit;
     [SerializeField] private float _gameTimeLeft;
     [SerializeField] private bool _gameEnding;
+    [SerializeField] private List<GameObject> _playerGOs;
 
     // Start is called before the first frame update
     void Start()
@@ -26,11 +27,13 @@ public class AoAGameManager : MonoBehaviourPun
             _gameTimeLeft = _gameTimeLimit;
             _gameEnding = false;
             PhotonNetwork.AutomaticallySyncScene = true;
+            _playerGOs = new List<GameObject>();
 
             object playerSelection;
             if (PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue(NetworkCustomSettings.PLAYER_SELECTION_NUMBER, out playerSelection))
             {
                 GameObject playerGO = PhotonNetwork.Instantiate(_playerPrefabs[(int)playerSelection].name, startingPosition, Quaternion.identity);
+                _playerGOs.Add(playerGO);
             }
 
             Cursor.lockState = CursorLockMode.Locked;
@@ -62,14 +65,19 @@ public class AoAGameManager : MonoBehaviourPun
         yield return new WaitForSeconds(10);
         if (PhotonNetwork.IsMasterClient)
         {
+            SetupLoadScreen();
             LoadMainMenu();
         }
 
     }
 
+    private void SetupLoadScreen()
+    {
+        Debug.Log("Sorting Players by fruit collected");
+    }
+
     public void LoadMainMenu()
     {
         PhotonNetwork.LoadLevel(0);
-        PhotonNetwork.LeaveRoom();
     }
 }

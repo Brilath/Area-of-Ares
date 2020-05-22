@@ -563,7 +563,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 146850780}
-  - component: {fileID: 146850782}
   - component: {fileID: 146850781}
   m_Layer: 5
   m_Name: Player Panels
@@ -616,18 +615,6 @@ MonoBehaviour:
   m_Spacing: {x: 150, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
---- !u!114 &146850782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146850779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d75e16ec85a11a744805ae182f0d8d30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &234226361 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8808508714739495278, guid: 465fe8313d8895d4ca1bec410afac4e2,
