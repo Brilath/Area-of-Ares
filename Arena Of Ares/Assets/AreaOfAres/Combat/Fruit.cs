@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using System;
 
-public class Fruit : MonoBehaviour
+public class Fruit : MonoBehaviourPun
 {
     [SerializeField] public int Amount;
 
@@ -13,7 +13,9 @@ public class Fruit : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player" && other.isTrigger)
+        Debug.Log($"Collection fruit {photonView.InstantiationId} for player");
+
+        if (other.gameObject.tag == "Player")
         {
             FruitBasket fruitBasket = other.gameObject.GetComponent<FruitBasket>();
             if (fruitBasket != null)
@@ -21,16 +23,22 @@ public class Fruit : MonoBehaviour
                 fruitBasket.Modify(Amount);
             }
 
-            if (this.gameObject != null && PhotonNetwork.IsMasterClient)
+            if (this.gameObject != null)
             {
                 int playerId = other.gameObject.GetComponent<PhotonView>().OwnerActorNr;
-                Debug.Log($"Collection fruit for player id {playerId}");
-                if (playerId != 0)
+                Debug.Log($"Collection fruit {photonView.InstantiationId} for player id {playerId}");
+                OnCollected(this, playerId);
+                if (!photonView.IsMine && PhotonNetwork.LocalPlayer.IsMasterClient)
                 {
-                    OnCollected(this, playerId);
+                    photonView.RPC("DestroyFruit", RpcTarget.AllBuffered);
                 }
-                PhotonNetwork.Destroy(this.gameObject);
             }
         }
+    }
+
+    [PunRPC]
+    void DestroyFruit()
+    {
+        Destroy(this.gameObject);
     }
 }

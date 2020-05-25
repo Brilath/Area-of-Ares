@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class FruitController : MonoBehaviour
+public class FruitController : MonoBehaviourPun
 {
     [SerializeField] private GameObject _fruitSpawns;
     [SerializeField] private GameObject _spawnedFruits;
@@ -11,17 +11,19 @@ public class FruitController : MonoBehaviour
     [SerializeField] private float _fruitDuration;
     [SerializeField] private float _spawnRate;
     [SerializeField] private float _countDown;
+    [SerializeField] private bool _spawning;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _countDown = _spawnRate;
+        _spawning = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (PhotonNetwork.IsConnectedAndReady && PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsConnectedAndReady && PhotonNetwork.IsMasterClient && _spawning)
         {
             _countDown -= Time.deltaTime;
 
@@ -31,6 +33,18 @@ public class FruitController : MonoBehaviour
                 _countDown = _spawnRate;
             }
         }
+    }
+
+    public void StartSpawning()
+    {
+        _spawning = true;
+        _countDown = _spawnRate;
+    }
+    public void EndSpawning()
+    {
+        _spawning = false;
+        _countDown = _spawnRate;
+        StopAllCoroutines();
     }
 
     private void SpawnFruit()
@@ -51,7 +65,10 @@ public class FruitController : MonoBehaviour
         yield return new WaitForSeconds(_fruitDuration);
         if (fruit.gameObject != null)
         {
-            PhotonNetwork.Destroy(fruit);
+            if (photonView.IsMine)
+            {
+                PhotonNetwork.Destroy(fruit);
+            }
         }
     }
 }

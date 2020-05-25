@@ -183,8 +183,11 @@ namespace AreaOfAres.Network
             _roomNameText.text = PhotonNetwork.CurrentRoom.Name;
             _playerCountText.text = $"Player Count {PhotonNetwork.CurrentRoom.PlayerCount} / {PhotonNetwork.CurrentRoom.MaxPlayers}";
 
-            Destroy(_playerList[otherPlayer.ActorNumber].gameObject);
-            _playerList.Remove(otherPlayer.ActorNumber);
+            if (_playerList.ContainsKey(otherPlayer.ActorNumber))
+            {
+                Destroy(_playerList[otherPlayer.ActorNumber].gameObject);
+                _playerList.Remove(otherPlayer.ActorNumber);
+            }
 
             _startButton.SetActive(CheckPlayersReady());
         }
@@ -192,6 +195,7 @@ namespace AreaOfAres.Network
         public override void OnLeftRoom()
         {
             Debug.Log("Player has left the room");
+
             foreach (GameObject go in _playerList.Values)
             {
                 Destroy(go);
@@ -280,6 +284,7 @@ namespace AreaOfAres.Network
         private static void SetupPhotonConnection()
         {
             PhotonNetwork.AutomaticallySyncScene = true;
+            PhotonNetwork.IsMessageQueueRunning = true;
 
             if (!PhotonNetwork.IsConnected)
             {

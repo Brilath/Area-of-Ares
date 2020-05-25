@@ -36,7 +36,10 @@ public class DisplayPlayer : MonoBehaviourPun
     private void HandleFruitCollected(Fruit fruit, int id)
     {
         //object[] parms = new object[] { fruit.Amount, id };
-        photonView.RPC("UpdateFruitCount", RpcTarget.AllBuffered, id, fruit.Amount);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            photonView.RPC("UpdateFruitCount", RpcTarget.AllBuffered, id, fruit.Amount);
+        }
     }
 
     [PunRPC]

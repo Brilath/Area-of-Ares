@@ -24,6 +24,11 @@ public class FruitBasket : MonoBehaviour
         }
     }
 
+    public int GetFruit()
+    {
+        return _currentFruit;
+    }
+
     public void SetModifiable(bool status)
     {
         _modifiable = status;
