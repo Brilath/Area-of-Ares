@@ -8,9 +8,11 @@ public class FruitBasket : MonoBehaviour
     [SerializeField] private int _currentFruit;
     [SerializeField] private bool _modifiable;
 
+    public int FruitCount { get { return _currentFruit; } set { _currentFruit = value; } }
+
     private void Start()
     {
-        _currentFruit = 0;
+        FruitCount = 0;
         _modifiable = true;
     }
 
@@ -18,15 +20,15 @@ public class FruitBasket : MonoBehaviour
     {
         if (_modifiable)
         {
-            _currentFruit += amount;
+            FruitCount += amount;
 
-            _currentFruit = Mathf.Clamp(_currentFruit, 0, _maxFruit);
+            FruitCount = Mathf.Clamp(FruitCount, 0, _maxFruit);
         }
     }
 
     public int GetFruit()
     {
-        return _currentFruit;
+        return FruitCount;
     }
 
     public void SetModifiable(bool status)

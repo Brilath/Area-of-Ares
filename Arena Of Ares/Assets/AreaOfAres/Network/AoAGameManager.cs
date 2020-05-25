@@ -126,7 +126,6 @@ public class AoAGameManager : MonoBehaviourPun
                         fruitAmount = go.GetComponent<FruitBasket>().GetFruit();
                     }
                 }
-
                 aoaPlayers.Add(new AoAPlayer(player, playerImage, fruitAmount));
             }
         }
@@ -140,7 +139,6 @@ public class AoAGameManager : MonoBehaviourPun
             rankingGO.transform.localScale = Vector3.one;
             PlayerRank pr = rankingGO.GetComponent<PlayerRank>();
             pr.Initialize(rank, player.Name, player.Model);
-
             rank++;
         }
     }

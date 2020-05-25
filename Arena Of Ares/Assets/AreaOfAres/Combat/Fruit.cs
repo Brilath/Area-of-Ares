@@ -9,7 +9,7 @@ public class Fruit : MonoBehaviourPun
     [SerializeField] public int Amount;
 
     public static event Action<Fruit, int> OnCollected = delegate { };
-    public static event Action<Fruit, int> OnDropped = delegate { };
+    public static event Action<int, int> OnDropped = delegate { };
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -40,5 +40,10 @@ public class Fruit : MonoBehaviourPun
     void DestroyFruit()
     {
         Destroy(this.gameObject);
+    }
+
+    public static void DropFruit(int playerID, int amount)
+    {
+        OnDropped(playerID, amount);
     }
 }

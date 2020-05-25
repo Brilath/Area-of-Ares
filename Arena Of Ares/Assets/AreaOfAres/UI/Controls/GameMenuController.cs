@@ -52,6 +52,4 @@ public class GameMenuController : MonoBehaviour
         _keyBindsSettings.SetActive(_keyBindsSettings.name.Equals(setting.name));
         _soundSettings.SetActive(_soundSettings.name.Equals(setting.name));
     }
-
-
 }

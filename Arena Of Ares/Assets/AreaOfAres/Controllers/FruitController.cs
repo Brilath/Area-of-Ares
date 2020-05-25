@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using System;
 
 public class FruitController : MonoBehaviourPun
 {
@@ -18,6 +19,19 @@ public class FruitController : MonoBehaviourPun
     {
         _countDown = _spawnRate;
         _spawning = false;
+        Fruit.OnDropped += HandleFruitDropped;
+    }
+    private void OnDestroy()
+    {
+        Fruit.OnDropped -= HandleFruitDropped;
+    }
+
+    private void HandleFruitDropped(int playerID, int amount)
+    {
+        for (int i = 0; i < Mathf.Abs(amount); i++)
+        {
+            SpawnFruit();
+        }
     }
 
     // Update is called once per frame
@@ -49,8 +63,8 @@ public class FruitController : MonoBehaviourPun
 
     private void SpawnFruit()
     {
-        int randomSpawn = Random.Range(0, _fruitSpawns.transform.childCount);
-        int randomFruit = Random.Range(0, _fruits.Length);
+        int randomSpawn = UnityEngine.Random.Range(0, _fruitSpawns.transform.childCount);
+        int randomFruit = UnityEngine.Random.Range(0, _fruits.Length);
 
         Vector3 spawnPoint = _fruitSpawns.transform.GetChild(randomSpawn).transform.position;
         GameObject fruit = _fruits[randomFruit];

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class DamageObject : MonoBehaviour
 {
@@ -10,13 +11,19 @@ public class DamageObject : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Health health = other.gameObject.GetComponent<Health>();
-            if (health != null)
-            {
-                health.Modify(-_damage);
-            }
             Debug.Log("Hit player");
-            //Destroy(other.gameObject);
+
+            FruitBasket fruitBasket = other.gameObject.GetComponent<FruitBasket>();
+            PhotonView view = other.gameObject.GetComponent<PhotonView>();
+            if (view != null && fruitBasket.FruitCount > 0 && PhotonNetwork.IsMasterClient)
+            {
+                int playerId = view.OwnerActorNr;
+                Fruit.DropFruit(playerId, -_damage);
+            }
+            if (fruitBasket != null)
+            {
+                fruitBasket.Modify(-_damage);
+            }
         }
     }
 }

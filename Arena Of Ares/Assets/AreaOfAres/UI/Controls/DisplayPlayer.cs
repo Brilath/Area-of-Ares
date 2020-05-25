@@ -28,14 +28,16 @@ public class DisplayPlayer : MonoBehaviourPun
         Fruit.OnDropped += HandleFruitDropped;
     }
 
-    private void HandleFruitDropped(Fruit fruit, int id)
+    private void HandleFruitDropped(int id, int amount)
     {
-        UpdateFruitCount(id, fruit.Amount);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            photonView.RPC("UpdateFruitCount", RpcTarget.AllBuffered, id, amount);
+        }
     }
 
     private void HandleFruitCollected(Fruit fruit, int id)
     {
-        //object[] parms = new object[] { fruit.Amount, id };
         if (PhotonNetwork.IsMasterClient)
         {
             photonView.RPC("UpdateFruitCount", RpcTarget.AllBuffered, id, fruit.Amount);
