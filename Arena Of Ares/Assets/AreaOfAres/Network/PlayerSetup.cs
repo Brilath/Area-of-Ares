@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine.UI;
 using TMPro;
 
@@ -11,6 +12,7 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
     [SerializeField] private TextMeshProUGUI playerNumberText;
     [SerializeField] private Color[] _playerColors;
     [SerializeField] private int playerNumber;
+    public int PlayerNumber { get { return playerNumber; } set { playerNumber = value; } }
     [SerializeField] private Color playerColor;
 
 
@@ -30,15 +32,25 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
             transform.GetComponent<PlayerSoundController>().enabled = false;
         }
 
-        playerNumber = photonView.OwnerActorNr;
-        playerColor = _playerColors[playerNumber - 1];
-        photonView.RPC("SetupPlayerIcon", RpcTarget.AllBuffered);
+        foreach (Player player in PhotonNetwork.PlayerList)
+        {
+            if (player.ActorNumber == photonView.OwnerActorNr)
+            {
+                object playerNum;
+                if (player.CustomProperties.TryGetValue(NetworkCustomSettings.PLAYER_NUMBER, out playerNum))
+                {
+                    PlayerNumber = (int)playerNum;
+                    playerColor = _playerColors[PlayerNumber - 1];
+                    photonView.RPC("SetupPlayerIcon", RpcTarget.AllBuffered);
+                }
+            }
+        }
     }
 
     [PunRPC]
     private void SetupPlayerIcon()
     {
-        playerNumberText.text = playerNumber.ToString();
+        playerNumberText.text = PlayerNumber.ToString();
         playerNumberImage.color = playerColor;
     }
 }

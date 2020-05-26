@@ -43,10 +43,17 @@ public class AoAGameManager : MonoBehaviourPun
         if (PhotonNetwork.IsConnectedAndReady)
         {
             _playerRankingScreen.SetActive(false);
-            int playerPosition = PhotonNetwork.LocalPlayer.ActorNumber;
-            Vector3 startingPosition = _startingPositions[playerPosition - 1].position;
+
             _gameTimeLeft = _gameTimeLimit;
             _gameEnding = false;
+
+            int playerPosition = 0;
+            object playerNum;
+            if (PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue(NetworkCustomSettings.PLAYER_NUMBER, out playerNum))
+            {
+                playerPosition = (int)playerNum - 1;
+            }
+            Vector3 startingPosition = _startingPositions[playerPosition].position;
 
             object playerSelection;
             if (PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue(NetworkCustomSettings.PLAYER_SELECTION_NUMBER, out playerSelection))

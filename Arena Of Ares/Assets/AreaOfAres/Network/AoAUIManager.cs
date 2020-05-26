@@ -16,7 +16,13 @@ public class AoAUIManager : MonoBehaviour
         {
             foreach (KeyValuePair<int, Player> player in PhotonNetwork.CurrentRoom.Players)
             {
-                int playerID = player.Value.ActorNumber;
+                object playerNum;
+                int playerID = 0;
+                if (player.Value.CustomProperties.TryGetValue(NetworkCustomSettings.PLAYER_NUMBER, out playerNum))
+                {
+                    playerID = (int)playerNum;
+                }
+
                 string playerName = player.Value.NickName;
                 Color playerColor = _playerColors[playerID - 1];
                 DisplayPlayer playerUI = _playerUIs[playerID - 1];

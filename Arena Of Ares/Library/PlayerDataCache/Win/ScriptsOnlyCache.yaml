@@ -62,8 +62,6 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.PaintableSceneViewGrid
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.TileDragAndDropManager
-    Unity.TextMeshPro.Editor.dll:
-    - TMPro.EditorUtilities.TMPro_FontAssetCreatorWindow
     Unity.TextMeshPro.dll:
     - TMPro.TMP_ColorGradient
     - TMPro.TMP_FontAsset
@@ -75,8 +73,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -98,6 +98,151 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Toggle
     - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
+    Assets/Scenes/Area 2.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 50
+      Script: {instanceID: 0}
+    - Class: 58
+      Script: {instanceID: 0}
+    - Class: 61
+      Script: {instanceID: 0}
+    - Class: 62
+      Script: {instanceID: 0}
+    - Class: 66
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 610}
+    - Class: 114
+      Script: {instanceID: 9712}
+    - Class: 114
+      Script: {instanceID: 9886}
+    - Class: 114
+      Script: {instanceID: 9940}
+    - Class: 114
+      Script: {instanceID: 9972}
+    - Class: 114
+      Script: {instanceID: 10098}
+    - Class: 114
+      Script: {instanceID: 10352}
+    - Class: 114
+      Script: {instanceID: 10402}
+    - Class: 114
+      Script: {instanceID: 10464}
+    - Class: 114
+      Script: {instanceID: 10550}
+    - Class: 114
+      Script: {instanceID: 10618}
+    - Class: 114
+      Script: {instanceID: 10654}
+    - Class: 114
+      Script: {instanceID: 10744}
+    - Class: 114
+      Script: {instanceID: 10766}
+    - Class: 114
+      Script: {instanceID: 10790}
+    - Class: 114
+      Script: {instanceID: 10824}
+    - Class: 114
+      Script: {instanceID: 10952}
+    - Class: 114
+      Script: {instanceID: 11016}
+    - Class: 114
+      Script: {instanceID: 11072}
+    - Class: 114
+      Script: {instanceID: 11078}
+    - Class: 114
+      Script: {instanceID: 11122}
+    - Class: 114
+      Script: {instanceID: 11230}
+    - Class: 114
+      Script: {instanceID: 11234}
+    - Class: 114
+      Script: {instanceID: 11266}
+    - Class: 114
+      Script: {instanceID: 11308}
+    - Class: 114
+      Script: {instanceID: 11382}
+    - Class: 114
+      Script: {instanceID: 11408}
+    - Class: 114
+      Script: {instanceID: 11496}
+    - Class: 114
+      Script: {instanceID: 11520}
+    - Class: 114
+      Script: {instanceID: 11560}
+    - Class: 114
+      Script: {instanceID: 11574}
+    - Class: 114
+      Script: {instanceID: 11690}
+    - Class: 114
+      Script: {instanceID: 11734}
+    - Class: 114
+      Script: {instanceID: 11872}
+    - Class: 114
+      Script: {instanceID: 11902}
+    - Class: 114
+      Script: {instanceID: 11976}
+    - Class: 114
+      Script: {instanceID: 12008}
+    - Class: 114
+      Script: {instanceID: 12056}
+    - Class: 114
+      Script: {instanceID: 12072}
+    - Class: 114
+      Script: {instanceID: 12080}
+    - Class: 114
+      Script: {instanceID: 12100}
+    - Class: 114
+      Script: {instanceID: 12124}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 19719996
+      Script: {instanceID: 0}
+    - Class: 156049354
+      Script: {instanceID: 0}
+    - Class: 483693784
+      Script: {instanceID: 0}
+    - Class: 1839735485
+      Script: {instanceID: 0}
     Assets/Scenes/Area.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -2135,4 +2280,5 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/Area.unity
+  - Assets/Scenes/Area 2.unity
   playerPath: C:/Users/Brila/Desktop/Builds/AoA/Arena Of Ares.exe

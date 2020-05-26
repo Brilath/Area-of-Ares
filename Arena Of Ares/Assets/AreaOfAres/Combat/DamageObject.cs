@@ -14,10 +14,9 @@ public class DamageObject : MonoBehaviour
             Debug.Log("Hit player");
 
             FruitBasket fruitBasket = other.gameObject.GetComponent<FruitBasket>();
-            PhotonView view = other.gameObject.GetComponent<PhotonView>();
-            if (view != null && fruitBasket.FruitCount > 0 && PhotonNetwork.IsMasterClient)
+            int playerId = other.gameObject.GetComponent<PlayerSetup>().PlayerNumber;
+            if (fruitBasket.FruitCount > 0 && PhotonNetwork.IsMasterClient)
             {
-                int playerId = view.OwnerActorNr;
                 Fruit.DropFruit(playerId, -_damage);
             }
             if (fruitBasket != null)

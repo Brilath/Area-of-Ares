@@ -25,7 +25,7 @@ public class Fruit : MonoBehaviourPun
 
             if (this.gameObject != null)
             {
-                int playerId = other.gameObject.GetComponent<PhotonView>().OwnerActorNr;
+                int playerId = other.gameObject.GetComponent<PlayerSetup>().PlayerNumber;
                 Debug.Log($"Collection fruit {photonView.InstantiationId} for player id {playerId}");
                 OnCollected(this, playerId);
                 if (!photonView.IsMine && PhotonNetwork.LocalPlayer.IsMasterClient)

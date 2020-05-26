@@ -128,6 +128,7 @@ namespace AreaOfAres.Network
         {
             Debug.Log($"{PhotonNetwork.LocalPlayer.NickName} connected to room {PhotonNetwork.CurrentRoom.Name}");
             Debug.Log($"Currently {PhotonNetwork.CurrentRoom.PlayerCount} connected");
+            int playerCounter = 1;
 
             if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey(NetworkCustomSettings.GAME_MODE))
             {
@@ -153,6 +154,11 @@ namespace AreaOfAres.Network
                     {
                         playerListGO.GetComponent<PlayerSelection>().Initialize(player.ActorNumber, 0);
                     }
+
+                    ExitGames.Client.Photon.Hashtable playerNumberProperty = new ExitGames.Client.Photon.Hashtable()
+                    {{NetworkCustomSettings.PLAYER_NUMBER, playerCounter}};
+                    player.SetCustomProperties(playerNumberProperty);
+                    playerCounter++;
                 }
             }
 
@@ -188,8 +194,27 @@ namespace AreaOfAres.Network
                 Destroy(_playerList[otherPlayer.ActorNumber].gameObject);
                 _playerList.Remove(otherPlayer.ActorNumber);
             }
+            //************************************************************\\
+            //    Loop through each player and reassign player number     \\
+            //************************************************************\\
+            int playerCounter = 1;
 
-            _startButton.SetActive(CheckPlayersReady());
+            if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey(NetworkCustomSettings.GAME_MODE))
+            {
+                foreach (Player player in PhotonNetwork.PlayerList)
+                {
+                    ExitGames.Client.Photon.Hashtable playerNumberProperty = new ExitGames.Client.Photon.Hashtable()
+                    {{NetworkCustomSettings.PLAYER_NUMBER, playerCounter}};
+                    player.SetCustomProperties(playerNumberProperty);
+
+                    ExitGames.Client.Photon.Hashtable actorNumberProperty = new ExitGames.Client.Photon.Hashtable()
+                    {{NetworkCustomSettings.ACTOR_NUMBER, player.ActorNumber}};
+                    player.SetCustomProperties(actorNumberProperty);
+
+                    playerCounter++;
+                }
+                _startButton.SetActive(CheckPlayersReady());
+            }
         }
         // Call back if the current player leaves the room
         public override void OnLeftRoom()
@@ -209,6 +234,15 @@ namespace AreaOfAres.Network
                 ExitGames.Client.Photon.Hashtable newProps = new ExitGames.Client.Photon.Hashtable()
                     {
                         {NetworkCustomSettings.PLAYER_LOCKED_IN, false}
+                    };
+                PhotonNetwork.LocalPlayer.SetCustomProperties(newProps);
+            }
+            object playerNumber;
+            if (PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue(NetworkCustomSettings.PLAYER_NUMBER, out playerNumber))
+            {
+                ExitGames.Client.Photon.Hashtable newProps = new ExitGames.Client.Photon.Hashtable()
+                    {
+                        {NetworkCustomSettings.PLAYER_NUMBER, 0}
                     };
                 PhotonNetwork.LocalPlayer.SetCustomProperties(newProps);
             }
@@ -276,7 +310,9 @@ namespace AreaOfAres.Network
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
-            PhotonNetwork.LoadLevel(1);
+            int[] levels = NetworkCustomSettings.CurrentLevels();
+            int randomIndex = Random.Range(0, levels.Length);
+            PhotonNetwork.LoadLevel(levels[randomIndex]);
         }
         #endregion
 
