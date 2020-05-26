@@ -20,7 +20,7 @@ public class NetworkCustomSettings
 
     public static int[] CurrentLevels()
     {
-        int[] levels = new int[] { 1, 2 };
+        int[] levels = new int[] { 1, 2, 3 };
         return levels;
     }
 }
