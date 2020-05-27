@@ -587,6 +587,10 @@ MonoBehaviour:
   jumpHeight: 2.5
   maxAirJumps: 1
   jumpPhase: 0
+  knockBackLength: 0.25
+  knockBackCounter: 0
+  knockBackPower: 3
+  knockBackForce: {x: 0, y: 0}
 --- !u!114 &3740381457549843964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -835,9 +839,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b3a006d6a0528b46b9993542a598e53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _modifiable: 0
   _maxFruit: 99
   _currentFruit: 0
-  _modifiable: 0
+  _invincibilityLength: 0.5
+  _invincibilityCounter: 0
+  spriteRenderer: {fileID: 0}
 --- !u!1 &8507119875269324186
 GameObject:
   m_ObjectHideFlags: 0

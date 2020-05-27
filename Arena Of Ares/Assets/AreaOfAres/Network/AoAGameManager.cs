@@ -44,6 +44,7 @@ public class AoAGameManager : MonoBehaviourPun
         {
             _playerRankingScreen.SetActive(false);
 
+            _gameTimeLimit = NetworkCustomSettings.GAME_TIME;
             _gameTimeLeft = _gameTimeLimit;
             _gameEnding = false;
 

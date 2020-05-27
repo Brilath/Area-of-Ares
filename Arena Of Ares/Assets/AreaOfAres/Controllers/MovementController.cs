@@ -28,6 +28,11 @@ public class MovementController : MonoBehaviour
 
     private PlayerSoundController soundController;
 
+    [SerializeField] private float knockBackLength;
+    [SerializeField] private float knockBackCounter;
+    [SerializeField] private float knockBackPower;
+    [SerializeField] private Vector2 knockBackForce;
+
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
@@ -36,36 +41,46 @@ public class MovementController : MonoBehaviour
 
     void Update()
     {
-        // Move
         float playerInput = Input.GetAxis("Horizontal");
-        playerInput = Mathf.Min(playerInput, 1f);
 
-        Vector3 movementHorizontal = transform.right * playerInput;
-        desiredVelocity = movementHorizontal.normalized * maxSpeed;
+        if (knockBackCounter <= 0)
+        {
+            // Move    
+            playerInput = Mathf.Min(playerInput, 1f);
+            Vector3 movementHorizontal = transform.right * playerInput;
+            desiredVelocity = movementHorizontal.normalized * maxSpeed;
 
-        // Jump
-        desiredJump |= Input.GetButtonDown("Jump");
+            // Jump
+            desiredJump |= Input.GetButtonDown("Jump");
+        }
+        else
+        {
+            knockBackCounter -= Time.deltaTime;
+        }
     }
 
     private void FixedUpdate()
     {
-        UpdateState();
-
-        // Depending if grounded use the correct acceleration
-        float acceleration = onGround ? maxAcceleration : maxAirAcceleration;
-        float maxSpeedChange = acceleration * Time.deltaTime;
-
-        velocity.x =
-            Mathf.MoveTowards(velocity.x, desiredVelocity.x, maxSpeedChange);
-
-        if (desiredJump)
+        if (knockBackCounter <= 0)
         {
-            desiredJump = false;
-            Jump();
-        }
+            UpdateState();
 
-        body.velocity = velocity;
-        onGround = false;
+            // Depending if grounded use the correct acceleration
+            float acceleration = onGround ? maxAcceleration : maxAirAcceleration;
+            float maxSpeedChange = acceleration * Time.deltaTime;
+
+            velocity.x =
+                Mathf.MoveTowards(velocity.x, desiredVelocity.x, maxSpeedChange);
+
+            if (desiredJump)
+            {
+                desiredJump = false;
+                Jump();
+            }
+
+            body.velocity = velocity;
+            onGround = false;
+        }
     }
 
     private void UpdateState()
@@ -109,5 +124,31 @@ public class MovementController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         EvaluateCollision(other);
+    }
+
+    public void KnockBack()
+    {
+        knockBackCounter = knockBackLength;
+
+        if (body.velocity.x < 0.0f)
+        {
+            knockBackForce.x = knockBackPower;
+        }
+        else
+        {
+            knockBackForce.x = -knockBackPower;
+        }
+
+        if (body.velocity.y < 0.0f)
+        {
+            knockBackForce.y = knockBackPower;
+        }
+        else
+        {
+            knockBackForce.y = -knockBackPower;
+        }
+
+        body.velocity = new Vector2(0, 0);
+        body.AddForce(knockBackForce, ForceMode2D.Impulse);
     }
 }

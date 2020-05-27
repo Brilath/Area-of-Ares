@@ -15,13 +15,18 @@ public class DamageObject : MonoBehaviour
 
             FruitBasket fruitBasket = other.gameObject.GetComponent<FruitBasket>();
             int playerId = other.gameObject.GetComponent<PlayerSetup>().PlayerNumber;
-            if (fruitBasket.FruitCount > 0 && PhotonNetwork.IsMasterClient)
+            MovementController movementController = other.gameObject.GetComponent<MovementController>();
+
+            if (fruitBasket.FruitCount > 0 && fruitBasket.Modifiable && PhotonNetwork.IsMasterClient)
             {
                 Fruit.DropFruit(playerId, -_damage);
-            }
-            if (fruitBasket != null)
-            {
                 fruitBasket.Modify(-_damage);
+                movementController.KnockBack();
+            }
+            else if (fruitBasket.FruitCount <= 0 && fruitBasket.Modifiable && PhotonNetwork.IsMasterClient)
+            {
+                fruitBasket.SetModifiable(false);
+                movementController.KnockBack();
             }
         }
     }
