@@ -78,7 +78,6 @@ ScriptsOnlyBuild:
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
-    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.EventTrigger
@@ -2085,7 +2084,7 @@ ScriptsOnlyBuild:
     className: VertexZoom
   - hash:
       serializedVersion: 2
-      Hash: 0325a99a6edca3932df284dfed2d788f
+      Hash: 3e0a89ac6a5aa8e1a9d84942932f8fd9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FruitBasket
@@ -2139,7 +2138,7 @@ ScriptsOnlyBuild:
     className: CurrentRoomMasterClientIdProperty
   - hash:
       serializedVersion: 2
-      Hash: cc83c7e20ed74e6d40b20d3439b1cf7d
+      Hash: 2b27c67043e11f264e30e870262e3ea8
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MovementController

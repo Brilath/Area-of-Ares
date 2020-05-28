@@ -30,7 +30,6 @@ public class FruitBasket : MonoBehaviour
     {
         if (_invincibilityCounter > 0)
         {
-            Modifiable = true;
             Color invincibilityColor = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.5f);
             spriteRenderer.color = invincibilityColor;
             _invincibilityCounter -= Time.deltaTime;
@@ -39,6 +38,7 @@ public class FruitBasket : MonoBehaviour
             {
                 Color playerColor = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
                 spriteRenderer.color = playerColor;
+                Modifiable = true;
             }
         }
     }

@@ -9,6 +9,11 @@ public class DamageObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        DamagePlayer(other);
+    }
+
+    private void DamagePlayer(Collider2D other)
+    {
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("Hit player");
@@ -21,6 +26,7 @@ public class DamageObject : MonoBehaviour
             {
                 Fruit.DropFruit(playerId, -_damage);
                 fruitBasket.Modify(-_damage);
+                fruitBasket.SetModifiable(false);
                 movementController.KnockBack();
             }
             else if (fruitBasket.FruitCount <= 0 && fruitBasket.Modifiable && PhotonNetwork.IsMasterClient)
