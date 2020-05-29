@@ -12,6 +12,11 @@ public class DamageObject : MonoBehaviour
         DamagePlayer(other);
     }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        DamagePlayer(other);
+    }
+
     private void DamagePlayer(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
@@ -19,19 +24,11 @@ public class DamageObject : MonoBehaviour
             Debug.Log("Hit player");
 
             FruitBasket fruitBasket = other.gameObject.GetComponent<FruitBasket>();
-            int playerId = other.gameObject.GetComponent<PlayerSetup>().PlayerNumber;
             MovementController movementController = other.gameObject.GetComponent<MovementController>();
 
-            if (fruitBasket.FruitCount > 0 && fruitBasket.Modifiable && PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.IsMasterClient && fruitBasket.Modifiable)
             {
-                Fruit.DropFruit(playerId, -_damage);
                 fruitBasket.Modify(-_damage);
-                fruitBasket.SetModifiable(false);
-                movementController.KnockBack();
-            }
-            else if (fruitBasket.FruitCount <= 0 && fruitBasket.Modifiable && PhotonNetwork.IsMasterClient)
-            {
-                fruitBasket.SetModifiable(false);
                 movementController.KnockBack();
             }
         }

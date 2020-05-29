@@ -130,7 +130,7 @@ public class MovementController : MonoBehaviour
     {
         knockBackCounter = knockBackLength;
 
-        if (body.velocity.x < 0.0f)
+        if (body.velocity.x <= 0.0f)
         {
             knockBackForce.x = knockBackPower;
         }
@@ -139,7 +139,7 @@ public class MovementController : MonoBehaviour
             knockBackForce.x = -knockBackPower;
         }
 
-        if (body.velocity.y < 0.0f)
+        if (body.velocity.y <= 0.0f)
         {
             knockBackForce.y = knockBackPower;
         }
@@ -150,5 +150,10 @@ public class MovementController : MonoBehaviour
 
         body.velocity = new Vector2(0, 0);
         body.AddForce(knockBackForce, ForceMode2D.Impulse);
+    }
+    public void AddForce(Vector2 force)
+    {
+        body.velocity = new Vector2(0, 0);
+        body.AddForce(force, ForceMode2D.Impulse);
     }
 }

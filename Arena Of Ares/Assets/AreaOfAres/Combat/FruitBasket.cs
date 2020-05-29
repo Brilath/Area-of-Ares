@@ -11,12 +11,14 @@ public class FruitBasket : MonoBehaviour
     [SerializeField] private float _invincibilityLength;
     [SerializeField] private float _invincibilityCounter;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    private PlayerSoundController _playerSoundController;
 
     public int FruitCount { get { return _currentFruit; } set { _currentFruit = value; } }
 
     private void Awake()
     {
         spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
+        _playerSoundController = GetComponent<PlayerSoundController>();
     }
 
     private void Start()
@@ -45,8 +47,25 @@ public class FruitBasket : MonoBehaviour
 
     public void Modify(int amount)
     {
-        FruitCount += amount;
-        FruitCount = Mathf.Clamp(FruitCount, 0, _maxFruit);
+        if (Modifiable)
+        {        
+            if (amount > 0)
+            {
+                _playerSoundController.PlayHealSound();
+            }
+            else if (amount < 0)
+            {
+                SetModifiable(false);
+                _playerSoundController.PlayDamageSound();
+                if(FruitCount > 0)
+                {
+                    int playerId = gameObject.GetComponent<PlayerSetup>().PlayerNumber;
+                    Fruit.DropFruit(playerId, amount);
+                }
+            }    
+            FruitCount += amount;
+            FruitCount = Mathf.Clamp(FruitCount, 0, _maxFruit);            
+        }
     }
 
     public int GetFruit()
@@ -54,7 +73,7 @@ public class FruitBasket : MonoBehaviour
         return FruitCount;
     }
 
-    public void SetModifiable(bool status)
+    private void SetModifiable(bool status)
     {
         Modifiable = status;
         if (!Modifiable)
