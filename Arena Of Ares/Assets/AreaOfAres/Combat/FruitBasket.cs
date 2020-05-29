@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class FruitBasket : MonoBehaviour
+public class FruitBasket : MonoBehaviourPun
 {
     public bool Modifiable { get { return _modifiable; } private set { _modifiable = value; } }
     [SerializeField] private bool _modifiable;
@@ -32,14 +33,12 @@ public class FruitBasket : MonoBehaviour
     {
         if (_invincibilityCounter > 0)
         {
-            Color invincibilityColor = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.5f);
-            spriteRenderer.color = invincibilityColor;
+            photonView.RPC("SetRenderAlpha", RpcTarget.AllBuffered, 0.5f);
             _invincibilityCounter -= Time.deltaTime;
 
             if (_invincibilityCounter <= 0)
             {
-                Color playerColor = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
-                spriteRenderer.color = playerColor;
+                photonView.RPC("SetRenderAlpha", RpcTarget.AllBuffered, 1.0f);
                 Modifiable = true;
             }
         }
@@ -48,7 +47,7 @@ public class FruitBasket : MonoBehaviour
     public void Modify(int amount)
     {
         if (Modifiable)
-        {        
+        {
             if (amount > 0)
             {
                 _playerSoundController.PlayHealSound();
@@ -57,14 +56,14 @@ public class FruitBasket : MonoBehaviour
             {
                 SetModifiable(false);
                 _playerSoundController.PlayDamageSound();
-                if(FruitCount > 0)
+                if (FruitCount > 0)
                 {
                     int playerId = gameObject.GetComponent<PlayerSetup>().PlayerNumber;
                     Fruit.DropFruit(playerId, amount);
                 }
-            }    
+            }
             FruitCount += amount;
-            FruitCount = Mathf.Clamp(FruitCount, 0, _maxFruit);            
+            FruitCount = Mathf.Clamp(FruitCount, 0, _maxFruit);
         }
     }
 
@@ -72,7 +71,12 @@ public class FruitBasket : MonoBehaviour
     {
         return FruitCount;
     }
-
+    [PunRPC]
+    private void SetRenderAlpha(float alpha)
+    {
+        Color invincibilityColor = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, alpha);
+        spriteRenderer.color = invincibilityColor;
+    }
     private void SetModifiable(bool status)
     {
         Modifiable = status;

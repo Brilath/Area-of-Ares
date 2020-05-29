@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class MovementController : MonoBehaviour
+public class MovementController : MonoBehaviourPun
 {
     [SerializeField, Range(0f, 100f)]
     private float maxSpeed = 100f;
@@ -128,6 +129,11 @@ public class MovementController : MonoBehaviour
 
     public void KnockBack()
     {
+        photonView.RPC("RPCKnockBack", RpcTarget.AllBuffered);
+    }
+    [PunRPC]
+    private void RPCKnockBack()
+    {
         knockBackCounter = knockBackLength;
 
         if (body.velocity.x <= 0.0f)
@@ -152,6 +158,11 @@ public class MovementController : MonoBehaviour
         body.AddForce(knockBackForce, ForceMode2D.Impulse);
     }
     public void AddForce(Vector2 force)
+    {
+        photonView.RPC("RPCAddForce", RpcTarget.AllBuffered, force);
+    }
+    [PunRPC]
+    private void RPCAddForce(Vector2 force)
     {
         body.velocity = new Vector2(0, 0);
         body.AddForce(force, ForceMode2D.Impulse);

@@ -24,6 +24,7 @@ ScriptsOnlyBuild:
     - GameMenuController
     - Health
     - HealthObject
+    - JumpPad
     - MovementController
     - NetworkMovementController
     - PlayerRank
@@ -78,6 +79,7 @@ ScriptsOnlyBuild:
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.EventTrigger
@@ -195,27 +197,29 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11574}
     - Class: 114
-      Script: {instanceID: 11690}
+      Script: {instanceID: 11634}
     - Class: 114
-      Script: {instanceID: 11734}
+      Script: {instanceID: 11692}
     - Class: 114
-      Script: {instanceID: 11872}
+      Script: {instanceID: 11736}
     - Class: 114
-      Script: {instanceID: 11902}
+      Script: {instanceID: 11874}
     - Class: 114
-      Script: {instanceID: 11976}
+      Script: {instanceID: 11904}
     - Class: 114
-      Script: {instanceID: 12008}
+      Script: {instanceID: 11978}
     - Class: 114
-      Script: {instanceID: 12056}
+      Script: {instanceID: 12010}
     - Class: 114
-      Script: {instanceID: 12072}
+      Script: {instanceID: 12058}
     - Class: 114
-      Script: {instanceID: 12080}
+      Script: {instanceID: 12074}
     - Class: 114
-      Script: {instanceID: 12100}
+      Script: {instanceID: 12082}
     - Class: 114
-      Script: {instanceID: 12124}
+      Script: {instanceID: 12102}
+    - Class: 114
+      Script: {instanceID: 12126}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -340,27 +344,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11574}
     - Class: 114
-      Script: {instanceID: 11690}
+      Script: {instanceID: 11692}
     - Class: 114
-      Script: {instanceID: 11734}
+      Script: {instanceID: 11736}
     - Class: 114
-      Script: {instanceID: 11872}
+      Script: {instanceID: 11874}
     - Class: 114
-      Script: {instanceID: 11902}
+      Script: {instanceID: 11904}
     - Class: 114
-      Script: {instanceID: 11976}
+      Script: {instanceID: 11978}
     - Class: 114
-      Script: {instanceID: 12008}
+      Script: {instanceID: 12010}
     - Class: 114
-      Script: {instanceID: 12056}
+      Script: {instanceID: 12058}
     - Class: 114
-      Script: {instanceID: 12072}
+      Script: {instanceID: 12074}
     - Class: 114
-      Script: {instanceID: 12080}
+      Script: {instanceID: 12082}
     - Class: 114
-      Script: {instanceID: 12100}
+      Script: {instanceID: 12102}
     - Class: 114
-      Script: {instanceID: 12124}
+      Script: {instanceID: 12126}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -485,27 +489,29 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11574}
     - Class: 114
-      Script: {instanceID: 11690}
+      Script: {instanceID: 11634}
     - Class: 114
-      Script: {instanceID: 11734}
+      Script: {instanceID: 11692}
     - Class: 114
-      Script: {instanceID: 11872}
+      Script: {instanceID: 11736}
     - Class: 114
-      Script: {instanceID: 11902}
+      Script: {instanceID: 11874}
     - Class: 114
-      Script: {instanceID: 11976}
+      Script: {instanceID: 11904}
     - Class: 114
-      Script: {instanceID: 12008}
+      Script: {instanceID: 11978}
     - Class: 114
-      Script: {instanceID: 12056}
+      Script: {instanceID: 12010}
     - Class: 114
-      Script: {instanceID: 12072}
+      Script: {instanceID: 12058}
     - Class: 114
-      Script: {instanceID: 12080}
+      Script: {instanceID: 12074}
     - Class: 114
-      Script: {instanceID: 12100}
+      Script: {instanceID: 12082}
     - Class: 114
-      Script: {instanceID: 12124}
+      Script: {instanceID: 12102}
+    - Class: 114
+      Script: {instanceID: 12126}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -678,35 +684,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11574}
     - Class: 114
-      Script: {instanceID: 11642}
+      Script: {instanceID: 11644}
     - Class: 114
-      Script: {instanceID: 11690}
+      Script: {instanceID: 11692}
     - Class: 114
-      Script: {instanceID: 11734}
+      Script: {instanceID: 11736}
     - Class: 114
-      Script: {instanceID: 11786}
+      Script: {instanceID: 11788}
     - Class: 114
-      Script: {instanceID: 11872}
+      Script: {instanceID: 11874}
     - Class: 114
-      Script: {instanceID: 11902}
+      Script: {instanceID: 11904}
     - Class: 114
-      Script: {instanceID: 11926}
+      Script: {instanceID: 11928}
     - Class: 114
-      Script: {instanceID: 11976}
+      Script: {instanceID: 11978}
     - Class: 114
-      Script: {instanceID: 12008}
+      Script: {instanceID: 12010}
     - Class: 114
-      Script: {instanceID: 12014}
+      Script: {instanceID: 12016}
     - Class: 114
-      Script: {instanceID: 12056}
+      Script: {instanceID: 12058}
     - Class: 114
-      Script: {instanceID: 12072}
+      Script: {instanceID: 12074}
     - Class: 114
-      Script: {instanceID: 12080}
+      Script: {instanceID: 12082}
     - Class: 114
-      Script: {instanceID: 12092}
+      Script: {instanceID: 12094}
     - Class: 114
-      Script: {instanceID: 12100}
+      Script: {instanceID: 12102}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2016,6 +2022,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
     className: TextMeshSpawner
+  - hash:
+      serializedVersion: 2
+      Hash: d5ed9b33af29aa21352b785fb3939375
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: JumpPad
   - hash:
       serializedVersion: 2
       Hash: e63944317d2f5958e31963668bb29158

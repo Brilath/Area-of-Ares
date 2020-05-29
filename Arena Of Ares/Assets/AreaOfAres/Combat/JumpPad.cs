@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class JumpPad : MonoBehaviour
+public class JumpPad : MonoBehaviourPun
 {
 
     [SerializeField] private Vector2 _jumpForce;
@@ -24,14 +24,18 @@ public class JumpPad : MonoBehaviour
         {
             Debug.Log("Launch player");
             MovementController movementController = other.gameObject.GetComponent<MovementController>();
+            PhotonView photonV = other.gameObject.GetComponent<PhotonView>();
 
-            if (PhotonNetwork.IsMasterClient && movementController != null)
+            if (photonV.IsMine && movementController != null)
+            {
+                movementController.AddForce(_jumpForce);
+            }
+
+            if (PhotonNetwork.IsMasterClient)
             {
                 _animator.SetTrigger("launch");
                 _audio.Play();
-                movementController.AddForce(_jumpForce);
             }
         }
     }
-
 }

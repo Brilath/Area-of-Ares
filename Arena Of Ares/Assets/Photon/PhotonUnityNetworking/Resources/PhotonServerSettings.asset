@@ -41,5 +41,9 @@ MonoBehaviour:
   - DestroyFruit
   - RankPlayers
   - UpdateClock
+  - AddForce
+  - RPCAddForce
+  - RPCKnockBack
+  - SetRenderAlpha
   DisableAutoOpenWizard: 1
   ShowSettings: 1
