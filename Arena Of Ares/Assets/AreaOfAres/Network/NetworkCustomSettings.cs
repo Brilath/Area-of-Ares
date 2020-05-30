@@ -11,7 +11,7 @@ public class NetworkCustomSettings
     public const string SURVIVAL_MODE = "survival";
     public const int PLAYER_NAME_MIN = 1;
     public const int PLAYER_NAME_MAX = 10;
-    public const float GAME_TIME = 4500;
+    public const float GAME_TIME = 180;
 
     // Player Custom Properties
     public const string PLAYER_LOCKED_IN = "playerLockedIn";
@@ -21,7 +21,7 @@ public class NetworkCustomSettings
 
     public static int[] CurrentLevels()
     {
-        int[] levels = new int[] { 1, 2, 3 };
+        int[] levels = new int[] { 1, 2, 3, 4 };
         return levels;
     }
 }

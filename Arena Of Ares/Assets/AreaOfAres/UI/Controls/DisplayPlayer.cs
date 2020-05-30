@@ -24,23 +24,14 @@ public class DisplayPlayer : MonoBehaviourPun
         playerName.text = name;
         playerNumberImage.color = color;
 
-        Fruit.OnCollected += HandleFruitCollected;
-        Fruit.OnDropped += HandleFruitDropped;
+        FruitBasket.UpdateBasket += HandleUpdateBasket;
     }
 
-    private void HandleFruitDropped(int id, int amount)
+    private void HandleUpdateBasket(int id, int amount)
     {
         if (PhotonNetwork.IsMasterClient)
         {
             photonView.RPC("UpdateFruitCount", RpcTarget.AllBuffered, id, amount);
-        }
-    }
-
-    private void HandleFruitCollected(Fruit fruit, int id)
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            photonView.RPC("UpdateFruitCount", RpcTarget.AllBuffered, id, fruit.Amount);
         }
     }
 
@@ -50,7 +41,7 @@ public class DisplayPlayer : MonoBehaviourPun
         Debug.Log($"Updating player {id} UI by {amount}");
         if (playerID == id)
         {
-            fruitCount += amount;
+            fruitCount = amount;
             fruitCount = Mathf.Clamp(fruitCount, 0, 99);
             fruitCountText.text = fruitCount.ToString("D2");
         }
@@ -58,7 +49,6 @@ public class DisplayPlayer : MonoBehaviourPun
 
     private void OnDestroy()
     {
-        Fruit.OnCollected -= HandleFruitCollected;
-        Fruit.OnDropped -= HandleFruitDropped;
+        FruitBasket.UpdateBasket -= HandleUpdateBasket;
     }
 }

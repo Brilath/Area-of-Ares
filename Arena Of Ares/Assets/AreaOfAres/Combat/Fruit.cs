@@ -8,7 +8,7 @@ public class Fruit : MonoBehaviourPun
 {
     [SerializeField] public int Amount;
 
-    public static event Action<Fruit, int> OnCollected = delegate { };
+    public static event Action<int, int> OnCollected = delegate { };
     public static event Action<int, int> OnDropped = delegate { };
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -27,7 +27,7 @@ public class Fruit : MonoBehaviourPun
             {
                 int playerId = other.gameObject.GetComponent<PlayerSetup>().PlayerNumber;
                 Debug.Log($"Collection fruit {photonView.InstantiationId} for player id {playerId}");
-                OnCollected(this, playerId);
+                OnCollected(fruitBasket.FruitCount, playerId);
                 if (!photonView.IsMine && PhotonNetwork.LocalPlayer.IsMasterClient)
                 {
                     photonView.RPC("DestroyFruit", RpcTarget.AllBuffered);
@@ -37,7 +37,7 @@ public class Fruit : MonoBehaviourPun
     }
 
     [PunRPC]
-    void DestroyFruit()
+    private void DestroyFruit()
     {
         Destroy(this.gameObject);
     }

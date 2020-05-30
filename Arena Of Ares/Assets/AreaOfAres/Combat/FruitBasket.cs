@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using System;
 
 public class FruitBasket : MonoBehaviourPun
 {
@@ -13,6 +14,8 @@ public class FruitBasket : MonoBehaviourPun
     [SerializeField] private float _invincibilityCounter;
     [SerializeField] private SpriteRenderer spriteRenderer;
     private PlayerSoundController _playerSoundController;
+
+    public static event Action<int, int> UpdateBasket = delegate { };
 
     public int FruitCount { get { return _currentFruit; } set { _currentFruit = value; } }
 
@@ -48,6 +51,8 @@ public class FruitBasket : MonoBehaviourPun
     {
         if (Modifiable)
         {
+            int playerId = gameObject.GetComponent<PlayerSetup>().PlayerNumber;
+
             if (amount > 0)
             {
                 _playerSoundController.PlayHealSound();
@@ -58,12 +63,12 @@ public class FruitBasket : MonoBehaviourPun
                 _playerSoundController.PlayDamageSound();
                 if (FruitCount > 0)
                 {
-                    int playerId = gameObject.GetComponent<PlayerSetup>().PlayerNumber;
                     Fruit.DropFruit(playerId, amount);
                 }
             }
             FruitCount += amount;
             FruitCount = Mathf.Clamp(FruitCount, 0, _maxFruit);
+            UpdateBasket(playerId, FruitCount);
         }
     }
 
