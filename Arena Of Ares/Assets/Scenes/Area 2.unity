@@ -5828,6 +5828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameOptions: {fileID: 3226386972103281419}
+  _defaultOptionsButton: {fileID: 3226386972497842675}
   _keyBindsSettings: {fileID: 1552236429}
   _soundSettings: {fileID: 1349539835}
 --- !u!1001 &1186666410
@@ -13346,6 +13347,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 465fe8313d8895d4ca1bec410afac4e2, type: 3}
+--- !u!1 &3226386972497842675 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6385388889703693766, guid: 465fe8313d8895d4ca1bec410afac4e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 3226386972497842674}
+  m_PrefabAsset: {fileID: 0}
 --- !u!222 &3392842260225467911
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -1,55 +1,74 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class GameMenuController : MonoBehaviour
+namespace AreaOfAres.UI
 {
-
-    [SerializeField] private GameObject _gameOptions;
-    [SerializeField] private GameObject _keyBindsSettings;
-    [SerializeField] private GameObject _soundSettings;
-
-    private void Update()
+    public class GameMenuController : MonoBehaviour
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SetActiveSetting(_keyBindsSettings);
-            _gameOptions.SetActive(!_gameOptions.activeSelf);
 
-            if (Cursor.lockState == CursorLockMode.None)
+        [SerializeField] private GameObject _gameOptions;
+        [SerializeField] private GameObject _defaultOptionsButton;
+        [SerializeField] private GameObject _keyBindsSettings;
+        [SerializeField] private GameObject _soundSettings;
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                SetActiveSetting(_keyBindsSettings);
+                _gameOptions.SetActive(!_gameOptions.activeSelf);
+
+                if (_gameOptions.activeInHierarchy)
+                {
+                    EventSystem.current.SetSelectedGameObject(null);
+                    EventSystem.current.SetSelectedGameObject(_defaultOptionsButton);
+                }
+
+                if (Cursor.lockState == CursorLockMode.None)
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
+                }
+                else
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                }
             }
         }
-    }
 
-    public void OnKeybindsClicked()
-    {
-        SetActiveSetting(_keyBindsSettings);
-    }
+        public void OnKeybindsClicked()
+        {
+            SetActiveSetting(_keyBindsSettings);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(_defaultOptionsButton);
+        }
 
-    public void OnSoundSettingsClicked()
-    {
-        SetActiveSetting(_soundSettings);
-    }
+        public void OnSoundSettingsClicked()
+        {
+            SetActiveSetting(_soundSettings);
+            GameObject _defaultSoundButton;
+            _defaultSoundButton = FindObjectOfType<Toggle>().gameObject;
+            Debug.Log($"{_defaultSoundButton.name} found");
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(_defaultSoundButton);
+        }
 
-    public void OnCloseOptionsClicked()
-    {
-        SetActiveSetting(_keyBindsSettings);
-        _gameOptions.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
+        public void OnCloseOptionsClicked()
+        {
+            SetActiveSetting(_keyBindsSettings);
+            _gameOptions.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
 
-    private void SetActiveSetting(GameObject setting)
-    {
-        _keyBindsSettings.SetActive(_keyBindsSettings.name.Equals(setting.name));
-        _soundSettings.SetActive(_soundSettings.name.Equals(setting.name));
+        private void SetActiveSetting(GameObject setting)
+        {
+            _keyBindsSettings.SetActive(_keyBindsSettings.name.Equals(setting.name));
+            _soundSettings.SetActive(_soundSettings.name.Equals(setting.name));
+        }
     }
 }

@@ -24,6 +24,7 @@ public class AoAGameManager : MonoBehaviourPun
     [SerializeField] private float _gameTimeLimit;
     [SerializeField] private float _gameTimeLeft;
     [SerializeField] private bool _gameEnding;
+    private bool rejoin; // reset it to false elsewhere
 
     private void Awake()
     {
@@ -156,5 +157,30 @@ public class AoAGameManager : MonoBehaviourPun
         PhotonNetwork.IsMessageQueueRunning = false;
         StopAllCoroutines();
         PhotonNetwork.LoadLevel(0);
+    }
+
+    void OnConnectionFail(DisconnectCause cause)
+    {
+        if (PhotonNetwork.Server == ServerConnection.GameServer)
+        {
+            switch (cause)
+            {
+                // add other disconnect causes that could happen while joined
+                case DisconnectCause.DisconnectByClientLogic:
+                    rejoin = true;
+                    break;
+                default:
+                    rejoin = false;
+                    break;
+            }
+        }
+    }
+
+    void OnDisconnectedFromPhoton()
+    {
+        if (rejoin && !PhotonNetwork.ReconnectAndRejoin())
+        {
+            Debug.LogError("Error trying to reconnect and rejoin");
+        }
     }
 }

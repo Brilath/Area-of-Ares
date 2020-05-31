@@ -4768,11 +4768,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2092916577883974688, guid: 2c47e98223a8ecf4ea405c6a553de2db,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.111
-      objectReference: {fileID: 0}
     - target: {fileID: 2092916576904620253, guid: 2c47e98223a8ecf4ea405c6a553de2db,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4802,6 +4797,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2092916577883974688, guid: 2c47e98223a8ecf4ea405c6a553de2db,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.111
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c47e98223a8ecf4ea405c6a553de2db, type: 3}
@@ -6802,6 +6802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameOptions: {fileID: 3226386972103281419}
+  _defaultOptionsButton: {fileID: 3226386972497842675}
   _keyBindsSettings: {fileID: 1552236429}
   _soundSettings: {fileID: 1349539835}
 --- !u!1 &1192266279
@@ -13734,6 +13735,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 465fe8313d8895d4ca1bec410afac4e2, type: 3}
+--- !u!1 &3226386972497842675 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6385388889703693766, guid: 465fe8313d8895d4ca1bec410afac4e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 3226386972497842674}
+  m_PrefabAsset: {fileID: 0}
 --- !u!222 &3392842260225467911
 CanvasRenderer:
   m_ObjectHideFlags: 0
