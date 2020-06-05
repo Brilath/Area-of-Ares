@@ -27,7 +27,7 @@ public class DamageObject : MonoBehaviour
             MovementController movementController = other.gameObject.GetComponent<MovementController>();
             PhotonView photonV = other.gameObject.GetComponent<PhotonView>();
 
-            if (photonV.IsMine && fruitBasket.Modifiable)
+            if (PhotonNetwork.IsMasterClient && fruitBasket.Modifiable)
             {
                 fruitBasket.Modify(-_damage);
                 movementController.KnockBack();
