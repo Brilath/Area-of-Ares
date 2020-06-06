@@ -5,6 +5,7 @@ public class PlayerSoundController : MonoBehaviour
 {
     [SerializeField] private AudioClip _walkClip;
     [SerializeField] private AudioClip _jumpClip;
+    [SerializeField] private AudioClip _dashClip;
     [SerializeField] private AudioClip _healClip;
     [SerializeField] private AudioClip _damageClip;
 
@@ -53,6 +54,10 @@ public class PlayerSoundController : MonoBehaviour
     }
 
     public void PlayJumpSound()
+    {
+        _audioSource.PlayOneShot(_jumpClip);
+    }
+    public void PlayDashSound()
     {
         _audioSource.PlayOneShot(_jumpClip);
     }

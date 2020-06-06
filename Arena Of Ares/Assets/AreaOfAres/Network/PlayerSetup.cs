@@ -10,6 +10,7 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Image playerNumberImage;
     [SerializeField] private TextMeshProUGUI playerNumberText;
+    [SerializeField] private Transform playerDashImages;
     [SerializeField] private Color[] _playerColors;
     [SerializeField] private int playerNumber;
     public int PlayerNumber { get { return playerNumber; } set { playerNumber = value; } }
@@ -24,6 +25,9 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
             transform.GetComponent<MovementController>().enabled = true;
             transform.GetComponent<AnimationController>().enabled = true;
             transform.GetComponent<PlayerSoundController>().enabled = true;
+            transform.GetComponent<PlayerUIController>().Intitalize(transform.GetComponent<MovementController>());
+            playerColor = _playerColors[PhotonNetwork.LocalPlayer.ActorNumber - 1];
+            SetupDashIcons(playerDashImages, playerColor);
         }
         else
         {
@@ -52,5 +56,14 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
     {
         playerNumberText.text = PlayerNumber.ToString();
         playerNumberImage.color = playerColor;
+    }
+
+    private void SetupDashIcons(Transform transform, Color color)
+    {
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(true);
+            child.GetComponent<Image>().color = color;
+        }
     }
 }

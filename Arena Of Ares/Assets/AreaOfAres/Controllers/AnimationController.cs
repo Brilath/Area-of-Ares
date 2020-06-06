@@ -70,4 +70,8 @@ public class AnimationController : MonoBehaviourPun, IPunObservable
             _spriteRenderer.flipX = (bool)stream.ReceiveNext();
         }
     }
+    public void PlayDash()
+    {
+        _animator.SetTrigger("dash");
+    }
 }

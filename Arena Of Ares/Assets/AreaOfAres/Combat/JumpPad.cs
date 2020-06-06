@@ -34,8 +34,8 @@ public class JumpPad : MonoBehaviourPun
             if (PhotonNetwork.IsMasterClient)
             {
                 _animator.SetTrigger("launch");
-                _audio.Play();
             }
+            _audio.Play();
         }
     }
 }

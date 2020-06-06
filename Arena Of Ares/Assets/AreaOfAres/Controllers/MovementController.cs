@@ -2,23 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using System;
 
 public class MovementController : MonoBehaviourPun
 {
+    [Header("Movement")]
     [SerializeField, Range(0f, 100f)]
     private float maxSpeed = 100f;
-
     [SerializeField, Range(0f, 100f)]
     private float maxAcceleration = 100f;
     [SerializeField, Range(0f, 100f)]
     private float maxAirAcceleration = 100f;
-
     [SerializeField, Range(0f, 1f)]
     private float bounciness = 0.5f;
-
-    private Rigidbody2D body;
     [SerializeField] private Vector2 velocity;
     [SerializeField] private Vector2 desiredVelocity;
+    [Header("Jump")]
     [SerializeField] private bool desiredJump;
     [SerializeField] private bool onGround;
     [SerializeField, Range(0f, 10f)]
@@ -26,23 +25,35 @@ public class MovementController : MonoBehaviourPun
     [SerializeField, Range(0, 5)]
     private int maxAirJumps = 0;
     [SerializeField] private int jumpPhase;
-
-    private PlayerSoundController soundController;
-
+    [Header("Dash")]
+    [SerializeField] private bool desiredDash;
+    [SerializeField] private Vector2 dashPower;
+    [SerializeField, Range(0f, 15f)] private float dashCooldown = 2f;
+    [SerializeField] private float dashCounter = 0f;
+    [SerializeField, Range(0, 5)] private int maxDashes = 0;
+    [SerializeField] private int dashPhase;
+    [Header("Knockback")]
     [SerializeField] private float knockBackLength;
     [SerializeField] private float knockBackCounter;
     [SerializeField] private float knockBackPower;
     [SerializeField] private Vector2 knockBackForce;
+    private Rigidbody2D body;
+    private PlayerSoundController soundController;
+    private float playerInput;
+
+    // Events
+    public event Action<int> Dashing = delegate { };
 
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         soundController = GetComponent<PlayerSoundController>();
+        dashCounter = dashCooldown;
     }
 
     void Update()
     {
-        float playerInput = Input.GetAxis("Horizontal");
+        playerInput = Input.GetAxis("Horizontal");
 
         if (knockBackCounter <= 0)
         {
@@ -53,12 +64,18 @@ public class MovementController : MonoBehaviourPun
 
             // Jump
             desiredJump |= Input.GetButtonDown("Jump");
+
+            // Dash
+            desiredDash |= Input.GetButtonDown("Dash");
         }
         else
         {
             knockBackCounter -= Time.deltaTime;
         }
+
+        UpdateDashState();
     }
+
 
     private void FixedUpdate()
     {
@@ -77,6 +94,11 @@ public class MovementController : MonoBehaviourPun
             {
                 desiredJump = false;
                 Jump();
+            }
+            if (desiredDash)
+            {
+                desiredDash = false;
+                Dash();
             }
 
             body.velocity = velocity;
@@ -97,7 +119,7 @@ public class MovementController : MonoBehaviourPun
     {
         if (onGround || jumpPhase < maxAirJumps)
         {
-            jumpPhase += 1;
+            jumpPhase++;
             // Limit Upward Velocity
             float jumpSpeed = Mathf.Sqrt(-2f * Physics.gravity.y * jumpHeight);
             if (velocity.y > 0f)
@@ -106,6 +128,52 @@ public class MovementController : MonoBehaviourPun
             }
             velocity.y += jumpSpeed;
             soundController.PlayJumpSound();
+        }
+    }
+
+    private void Dash()
+    {
+        Vector2 dashForce = Vector2.zero;
+
+        if (dashPhase < maxDashes)
+        {
+            if (dashPhase == 0)
+            {
+                dashCounter = dashCooldown;
+            }
+
+            dashPhase++;
+
+            if (playerInput > 0.0f)
+            {
+                dashForce = transform.right * dashPower.x;
+            }
+            else if (playerInput < 0.0f)
+            {
+                dashForce = transform.right * -dashPower.x;
+            }
+
+            if (onGround) { dashForce.y = dashPower.y; }
+            Dashing(maxDashes - dashPhase);
+            GetComponent<AnimationController>().PlayDash();
+            body.AddForce(dashForce);
+            soundController.PlayDashSound();
+        }
+    }
+    private void UpdateDashState()
+    {
+        if (dashCounter > 0)
+        {
+            dashCounter -= Time.deltaTime;
+        }
+        if (dashCounter <= 0 && dashPhase > 0)
+        {
+            dashPhase--;
+            Dashing(maxDashes - dashPhase);
+        }
+        if (dashCounter <= 0 && dashPhase > 0)
+        {
+            dashCounter = dashCooldown;
         }
     }
 
