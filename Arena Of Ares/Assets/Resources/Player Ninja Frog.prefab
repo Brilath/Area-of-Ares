@@ -528,7 +528,6 @@ GameObject:
   - component: {fileID: 265953388226364015}
   - component: {fileID: 5115170018317615613}
   - component: {fileID: 3740381457549843964}
-  - component: {fileID: 2535632992368421158}
   - component: {fileID: 5597664634341773862}
   - component: {fileID: 7339535607883720788}
   - component: {fileID: -4396097858906346978}
@@ -537,6 +536,7 @@ GameObject:
   - component: {fileID: 953420155205913365}
   - component: {fileID: 7618994822767902579}
   - component: {fileID: 5897883074804065222}
+  - component: {fileID: 2535632992368421158}
   m_Layer: 0
   m_Name: Player Ninja Frog
   m_TagString: Player
@@ -738,33 +738,6 @@ MonoBehaviour:
   _desiredJump: 0
   _spriteRenderer: {fileID: 0}
   _isSpiritFlipped: 0
---- !u!114 &2535632992368421158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4861227095994382391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLayerWeightsInspector: 1
-  ShowParameterInspector: 1
-  m_SynchronizeParameters:
-  - Type: 1
-    SynchronizeType: 2
-    Name: velocityX
-  - Type: 1
-    SynchronizeType: 2
-    Name: velocityY
-  - Type: 9
-    SynchronizeType: 0
-    Name: dash
-  m_SynchronizeLayers:
-  - SynchronizeType: 2
-    LayerIndex: 0
 --- !u!114 &5597664634341773862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -990,6 +963,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDashImages: {fileID: 5074471859084287069}
+--- !u!114 &2535632992368421158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861227095994382391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 1
+    SynchronizeType: 2
+    Name: velocityX
+  - Type: 1
+    SynchronizeType: 2
+    Name: velocityY
+  - Type: 9
+    SynchronizeType: 1
+    Name: dash
+  m_SynchronizeLayers:
+  - SynchronizeType: 2
+    LayerIndex: 0
 --- !u!1 &5166824286878704024
 GameObject:
   m_ObjectHideFlags: 0

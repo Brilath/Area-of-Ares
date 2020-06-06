@@ -26,7 +26,13 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
             transform.GetComponent<AnimationController>().enabled = true;
             transform.GetComponent<PlayerSoundController>().enabled = true;
             transform.GetComponent<PlayerUIController>().Intitalize(transform.GetComponent<MovementController>());
-            playerColor = _playerColors[PhotonNetwork.LocalPlayer.ActorNumber - 1];
+            object playerNum;
+            int playerPosition = 0;
+            if (PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue(NetworkCustomSettings.PLAYER_NUMBER, out playerNum))
+            {
+                playerPosition = (int)playerNum;
+            }
+            playerColor = _playerColors[playerPosition - 1];
             SetupDashIcons(playerDashImages, playerColor);
         }
         else

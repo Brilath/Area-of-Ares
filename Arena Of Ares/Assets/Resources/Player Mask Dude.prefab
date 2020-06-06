@@ -816,7 +816,6 @@ GameObject:
   - component: {fileID: 2342078475952810843}
   - component: {fileID: 7335480620350892233}
   - component: {fileID: 1213968434031588552}
-  - component: {fileID: 900415506}
   - component: {fileID: 5110218309382914400}
   - component: {fileID: 3761280461361346866}
   - component: {fileID: -8247549100530029191}
@@ -824,6 +823,7 @@ GameObject:
   - component: {fileID: -3267599532253970154}
   - component: {fileID: 863792530}
   - component: {fileID: 502302203744219007}
+  - component: {fileID: 900415506}
   m_Layer: 0
   m_Name: Player Mask Dude
   m_TagString: Player
@@ -1010,33 +1010,6 @@ MonoBehaviour:
   _desiredJump: 0
   _spriteRenderer: {fileID: 0}
   _isSpiritFlipped: 0
---- !u!114 &900415506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6937492362829861123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLayerWeightsInspector: 1
-  ShowParameterInspector: 1
-  m_SynchronizeParameters:
-  - Type: 1
-    SynchronizeType: 2
-    Name: velocityX
-  - Type: 1
-    SynchronizeType: 2
-    Name: velocityY
-  - Type: 9
-    SynchronizeType: 0
-    Name: dash
-  m_SynchronizeLayers:
-  - SynchronizeType: 2
-    LayerIndex: 0
 --- !u!114 &5110218309382914400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1229,3 +1202,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDashImages: {fileID: 4291631031060695126}
+--- !u!114 &900415506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6937492362829861123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 1
+    SynchronizeType: 2
+    Name: velocityX
+  - Type: 1
+    SynchronizeType: 2
+    Name: velocityY
+  - Type: 9
+    SynchronizeType: 1
+    Name: dash
+  m_SynchronizeLayers:
+  - SynchronizeType: 2
+    LayerIndex: 0
