@@ -18,13 +18,12 @@ public class AoAGameManager : MonoBehaviourPun
     [SerializeField] private GameObject _playerRankings;
     [SerializeField] private GameObject _playerRankPrefab;
     [Header("General")]
-    [SerializeField]
-    private FruitController _fruitController;
+    [SerializeField] private int nextLevel;
+    [SerializeField] private FruitController _fruitController;
     [SerializeField] private TextMeshProUGUI _gameClockText;
     [SerializeField] private float _gameTimeLimit;
     [SerializeField] private float _gameTimeLeft;
     [SerializeField] private bool _gameEnding;
-    private bool rejoin; // reset it to false elsewhere
 
     private void Awake()
     {
@@ -68,7 +67,7 @@ public class AoAGameManager : MonoBehaviourPun
         }
         else
         {
-            LoadMainMenu();
+            GameController.Instance.LoadNextLevel(0);
         }
     }
     private void Update()
@@ -84,7 +83,7 @@ public class AoAGameManager : MonoBehaviourPun
         if (_gameTimeLeft <= 0 && !_gameEnding && PhotonNetwork.LocalPlayer.IsMasterClient)
         {
             _gameEnding = true;
-            StartCoroutine("EndGame");
+            StartCoroutine("LoadNextLevel");
         }
     }
 
@@ -95,51 +94,30 @@ public class AoAGameManager : MonoBehaviourPun
         _gameClockText.text = string.Format($"{ts.Minutes}:{ts.Seconds.ToString("D2")}");
     }
 
-    private IEnumerator EndGame()
+    private IEnumerator LoadNextLevel()
     {
         _fruitController.EndSpawning();
         photonView.RPC("RankPlayers", RpcTarget.AllBuffered);
 
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(5);
         if (PhotonNetwork.IsMasterClient)
         {
-            LoadMainMenu();
+            GameController.Instance.LoadNextLevel(nextLevel);
         }
-
     }
 
     [PunRPC]
     private void RankPlayers()
     {
         List<AoAPlayer> aoaPlayers = new List<AoAPlayer>();
-        GameObject[] playerGOs;
-        Sprite playerImage;
+        aoaPlayers = GameController.Instance.UpdatePlayers();
         int rank = 1;
 
         _playerRankingScreen.SetActive(true);
-        playerGOs = GameObject.FindGameObjectsWithTag("Player");
 
         Debug.Log("Sorting Players by fruit collected");
-        foreach (Player player in PhotonNetwork.PlayerList)
-        {
-            object playerSelection;
-            if (player.CustomProperties.TryGetValue(NetworkCustomSettings.PLAYER_SELECTION_NUMBER, out playerSelection))
-            {
-                playerImage = _playerSprites[(int)playerSelection];
-                int fruitAmount = 0;
-                for (int i = 0; i < playerGOs.Length; i++)
-                {
-                    GameObject go = playerGOs[i];
-                    if (go.GetComponent<PhotonView>().OwnerActorNr == player.ActorNumber)
-                    {
-                        fruitAmount = go.GetComponent<FruitBasket>().GetFruit();
-                    }
-                }
-                aoaPlayers.Add(new AoAPlayer(player, playerImage, fruitAmount));
-            }
-        }
 
-        aoaPlayers = aoaPlayers.OrderByDescending(p => p.Amount).ToList();
+        aoaPlayers = aoaPlayers.OrderByDescending(p => p.FruitCount).ToList();
 
         foreach (AoAPlayer player in aoaPlayers)
         {
@@ -147,40 +125,8 @@ public class AoAGameManager : MonoBehaviourPun
             rankingGO.transform.SetParent(_playerRankings.transform);
             rankingGO.transform.localScale = Vector3.one;
             PlayerRank pr = rankingGO.GetComponent<PlayerRank>();
-            pr.Initialize(rank, player.Name, player.Model);
+            pr.Initialize(rank, player.Name, player.FruitCount, player.Model);
             rank++;
-        }
-    }
-
-    public void LoadMainMenu()
-    {
-        PhotonNetwork.IsMessageQueueRunning = false;
-        StopAllCoroutines();
-        PhotonNetwork.LoadLevel(0);
-    }
-
-    void OnConnectionFail(DisconnectCause cause)
-    {
-        if (PhotonNetwork.Server == ServerConnection.GameServer)
-        {
-            switch (cause)
-            {
-                // add other disconnect causes that could happen while joined
-                case DisconnectCause.DisconnectByClientLogic:
-                    rejoin = true;
-                    break;
-                default:
-                    rejoin = false;
-                    break;
-            }
-        }
-    }
-
-    void OnDisconnectedFromPhoton()
-    {
-        if (rejoin && !PhotonNetwork.ReconnectAndRejoin())
-        {
-            Debug.LogError("Error trying to reconnect and rejoin");
         }
     }
 }

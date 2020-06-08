@@ -22,6 +22,7 @@ ScriptsOnlyBuild:
     - Fruit
     - FruitBasket
     - FruitController
+    - GameController
     - Health
     - HealthObject
     - JumpPad
@@ -668,6 +669,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12108}
     - Class: 114
       Script: {instanceID: 12132}
+    - Class: 114
+      Script: {instanceID: 22074}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1598,7 +1601,7 @@ ScriptsOnlyBuild:
     className: ChatAppIdCheckerUI
   - hash:
       serializedVersion: 2
-      Hash: 40a7de76861d9b268acf1ec3bb2738a3
+      Hash: 955ffbadd66c180b10c2a69250952549
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerRank
@@ -2570,7 +2573,7 @@ ScriptsOnlyBuild:
     className: CountdownTimer
   - hash:
       serializedVersion: 2
-      Hash: dfa40a9b717ba353e25179748e89f951
+      Hash: b4da395f90c0c4e098abf115d11e6dd3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AoAGameManager
@@ -2604,6 +2607,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 63787a0a7cb74e7eff27edc0f336b6af
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameController
   platform: 5
   scenePathNames:
   - Assets/Scenes/MainMenu.unity

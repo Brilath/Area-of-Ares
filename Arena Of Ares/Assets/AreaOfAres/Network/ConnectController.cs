@@ -312,7 +312,8 @@ namespace AreaOfAres.Network
             PhotonNetwork.CurrentRoom.IsVisible = false;
             int[] levels = NetworkCustomSettings.CurrentLevels();
             int randomIndex = Random.Range(0, levels.Length);
-            PhotonNetwork.LoadLevel(levels[randomIndex]);
+            //PhotonNetwork.LoadLevel(levels[randomIndex]);
+            PhotonNetwork.LoadLevel(1);
         }
         #endregion
 

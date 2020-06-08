@@ -3419,7 +3419,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GAME OVER
+  m_text: Final
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3453,7 +3453,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 0.1
   m_fontSizeMax: 350
-  m_fontStyle: 5
+  m_fontStyle: 1
   m_textAlignment: 1026
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3488,10 +3488,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 394395261}
-    characterCount: 9
+    characterCount: 5
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -5546,6 +5546,7 @@ MonoBehaviour:
   _playerRankings: {fileID: 681955775}
   _playerRankPrefab: {fileID: 6655983495202437465, guid: 783e4fab572ed7d45bd461c5f899f808,
     type: 3}
+  nextLevel: 0
   _fruitController: {fileID: 615812101}
   _gameClockText: {fileID: 2124251676}
   _gameTimeLimit: 45
