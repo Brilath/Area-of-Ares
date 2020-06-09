@@ -61,6 +61,8 @@ public class MovementController : MonoBehaviourPun
             playerInput = Mathf.Min(playerInput, 1f);
             Vector3 movementHorizontal = transform.right * playerInput;
             desiredVelocity = movementHorizontal.normalized * maxSpeed;
+            if (playerInput != 0 && onGround)
+            { GetComponent<AnimationController>().PlayDust(); }
 
             // Jump
             desiredJump |= Input.GetButtonDown("Jump");
@@ -128,6 +130,7 @@ public class MovementController : MonoBehaviourPun
             }
             velocity.y += jumpSpeed;
             soundController.PlayJumpSound();
+            GetComponent<AnimationController>().PlayDust();
         }
     }
 
@@ -156,6 +159,7 @@ public class MovementController : MonoBehaviourPun
             if (onGround) { dashForce.y = dashPower.y; }
             Dashing(maxDashes - dashPhase);
             GetComponent<AnimationController>().PlayDash();
+            GetComponent<AnimationController>().PlayDust();
             body.AddForce(dashForce);
             soundController.PlayDashSound();
         }
@@ -233,6 +237,7 @@ public class MovementController : MonoBehaviourPun
     private void RPCAddForce(Vector2 force)
     {
         body.velocity = new Vector2(0, 0);
+        GetComponent<AnimationController>().PlayDust();
         body.AddForce(force, ForceMode2D.Impulse);
     }
 }

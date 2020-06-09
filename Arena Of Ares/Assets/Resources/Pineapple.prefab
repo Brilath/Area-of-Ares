@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -7979777613472648446}
   - component: {fileID: 8440643479628718558}
   - component: {fileID: -6266998045522769754}
+  - component: {fileID: 5373342083960556017}
   m_Layer: 0
   m_Name: Pineapple
   m_TagString: Untagged
@@ -260,3 +261,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Amount: 1
+--- !u!95 &5373342083960556017
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061352791332324369}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1d7fdd56d6655cb409ada60425570da8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

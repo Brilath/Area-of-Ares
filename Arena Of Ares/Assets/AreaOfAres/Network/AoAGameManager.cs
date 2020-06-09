@@ -129,4 +129,10 @@ public class AoAGameManager : MonoBehaviourPun
             rank++;
         }
     }
+
+    public void LoadMainMenu()
+    {
+        StopAllCoroutines();
+        PhotonNetwork.LoadLevel(0);
+    }
 }

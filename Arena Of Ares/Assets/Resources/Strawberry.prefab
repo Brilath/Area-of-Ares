@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -303802940244291860}
   - component: {fileID: 4573800828415481783}
   - component: {fileID: 3715364414265234273}
+  - component: {fileID: 5179017598953815887}
   m_Layer: 0
   m_Name: Strawberry
   m_TagString: Untagged
@@ -261,3 +262,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Amount: 1
+--- !u!95 &5179017598953815887
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6380072325177354174}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a2b602de0760968479a05a8da97d720e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

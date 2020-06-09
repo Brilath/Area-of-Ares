@@ -18,6 +18,9 @@ public class AnimationController : MonoBehaviourPun, IPunObservable
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private bool _isSpiritFlipped;
 
+    [Header("Particals")]
+    [SerializeField] private ParticleSystem dust;
+
     private Rigidbody2D _body;
 
     private void Awake()
@@ -73,5 +76,9 @@ public class AnimationController : MonoBehaviourPun, IPunObservable
     public void PlayDash()
     {
         _animator.SetTrigger("dash");
+    }
+    public void PlayDust()
+    {
+        dust.Play();
     }
 }
