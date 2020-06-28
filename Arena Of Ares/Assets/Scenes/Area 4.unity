@@ -5494,6 +5494,7 @@ GameObject:
   - component: {fileID: 754498891}
   - component: {fileID: 754498893}
   - component: {fileID: 754498894}
+  - component: {fileID: 754498895}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -5552,6 +5553,7 @@ MonoBehaviour:
   _gameTimeLimit: 45
   _gameTimeLeft: 0
   _gameEnding: 0
+  _gameController: {fileID: 0}
 --- !u!114 &754498891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5706,6 +5708,23 @@ MonoBehaviour:
   viewIdField: 7
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &754498895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754498888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 242ce2807095d024aa46aa77e15e554e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerSprites:
+  - {fileID: -6367560908665664636, guid: 3750f45c844123341b9a777a96cb1eca, type: 3}
+  - {fileID: -6367560908665664636, guid: cd947491a13509945aa1b644f9db3ef2, type: 3}
+  - {fileID: -6367560908665664636, guid: d348dff3819df794186a80cb95777629, type: 3}
+  - {fileID: -6367560908665664636, guid: 40de9a8703e2e5a47882b0b86451c741, type: 3}
 --- !u!1 &760438320
 GameObject:
   m_ObjectHideFlags: 0

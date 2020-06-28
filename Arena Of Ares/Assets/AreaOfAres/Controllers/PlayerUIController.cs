@@ -31,6 +31,7 @@ public class PlayerUIController : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (movementController == null) return;
         movementController.Dashing -= HandleDash;
     }
 }

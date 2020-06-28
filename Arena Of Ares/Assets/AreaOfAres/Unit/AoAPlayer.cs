@@ -20,4 +20,8 @@ public class AoAPlayer
     {
         FruitCount += amount;
     }
+    public void SetCount(int amount)
+    {
+        FruitCount = amount;
+    }
 }

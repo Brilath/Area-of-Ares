@@ -52,7 +52,6 @@ public class FruitBasket : MonoBehaviourPun
         if (Modifiable)
         {
             int playerId = gameObject.GetComponent<PlayerSetup>().PlayerNumber;
-
             if (amount > 0)
             {
                 _playerSoundController.PlayHealSound();
@@ -68,13 +67,21 @@ public class FruitBasket : MonoBehaviourPun
             }
             FruitCount += amount;
             FruitCount = Mathf.Clamp(FruitCount, 0, _maxFruit);
-            UpdateBasket(playerId, FruitCount);
+            photonView.RPC("SetFruitCount", RpcTarget.AllBuffered, FruitCount);
         }
     }
 
     public int GetFruit()
     {
         return FruitCount;
+    }
+
+    [PunRPC]
+    private void SetFruitCount(int count)
+    {
+        int playerId = gameObject.GetComponent<PlayerSetup>().PlayerNumber;
+        FruitCount = count;
+        UpdateBasket(playerId, FruitCount);
     }
     [PunRPC]
     private void SetRenderAlpha(float alpha)

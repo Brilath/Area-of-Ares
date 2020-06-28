@@ -11,29 +11,29 @@ public class GameController : MonoBehaviour
     [SerializeField] private Sprite[] _playerSprites;
     private List<AoAPlayer> _players;
     public List<AoAPlayer> Players { get { return _players; } private set { _players = value; } }
-    private static GameController _instance;
-    public static GameController Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType<GameController>();
-                if (_instance == null)
-                {
-                    _instance = new GameObject().AddComponent<GameController>();
-                }
-            }
-            return _instance;
-        }
-    }
+    // private static GameController _instance;
+    // public static GameController Instance
+    // {
+    //     get
+    //     {
+    //         if (_instance == null)
+    //         {
+    //             _instance = FindObjectOfType<GameController>();
+    //             if (_instance == null)
+    //             {
+    //                 _instance = new GameObject().AddComponent<GameController>();
+    //             }
+    //         }
+    //         return _instance;
+    //     }
+    // }
     public int Round { get; set; }
 
     private void Awake()
     {
-        if (!PhotonNetwork.IsMasterClient) { Destroy(this.gameObject); }
-        if (_instance != null) { Destroy(this.gameObject); }
-        DontDestroyOnLoad(this);
+        // if (!PhotonNetwork.IsMasterClient) { Destroy(this.gameObject); }
+        // if (_instance != null) { Destroy(this.gameObject); }
+        // DontDestroyOnLoad(this);
         _players = new List<AoAPlayer>();
         Round = 0;
     }
@@ -84,7 +84,9 @@ public class GameController : MonoBehaviour
                 if (go.GetComponent<PhotonView>().OwnerActorNr == player.ActorNumber)
                 {
                     fruitAmount = go.GetComponent<FruitBasket>().GetFruit();
-                    Players.Find(p => p.Player == player).ModifyCount(fruitAmount);
+                    if (Players == null) { return new List<AoAPlayer>(); }
+
+                    Players.Find(p => p.Player == player)?.ModifyCount(fruitAmount);
                 }
             }
         }
@@ -98,7 +100,6 @@ public class GameController : MonoBehaviour
         StopAllCoroutines();
         PhotonNetwork.LoadLevel(level);
     }
-
 
     #region Disconnect    
     // TO DO finish reconnection code

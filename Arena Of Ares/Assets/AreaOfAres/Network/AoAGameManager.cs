@@ -7,7 +7,7 @@ using System;
 using Photon.Realtime;
 using System.Linq;
 
-public class AoAGameManager : MonoBehaviourPun
+public class AoAGameManager : MonoBehaviourPunCallbacks
 {
     [Header("Spawning Players")]
     [SerializeField] private GameObject[] _playerPrefabs;
@@ -24,10 +24,11 @@ public class AoAGameManager : MonoBehaviourPun
     [SerializeField] private float _gameTimeLimit;
     [SerializeField] private float _gameTimeLeft;
     [SerializeField] private bool _gameEnding;
+    [SerializeField] private GameController _gameController;
 
     private void Awake()
     {
-
+        _gameController = GetComponent<GameController>();
     }
 
     // Start is called before the first frame update
@@ -67,7 +68,7 @@ public class AoAGameManager : MonoBehaviourPun
         }
         else
         {
-            GameController.Instance.LoadNextLevel(0);
+            _gameController.LoadNextLevel(0);
         }
     }
     private void Update()
@@ -97,25 +98,49 @@ public class AoAGameManager : MonoBehaviourPun
     private IEnumerator LoadNextLevel()
     {
         _fruitController.EndSpawning();
-        photonView.RPC("RankPlayers", RpcTarget.AllBuffered);
 
-        yield return new WaitForSeconds(5);
         if (PhotonNetwork.IsMasterClient)
         {
-            GameController.Instance.LoadNextLevel(nextLevel);
+            Debug.Log("Lets End this round...");
+            ScoreKeeper scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper>();
+            GameObject goScoreKeeper;
+            if (scoreKeeper == null)
+            {
+                goScoreKeeper = PhotonNetwork.Instantiate("ScoreKeeper", transform.position, Quaternion.identity);
+                scoreKeeper = goScoreKeeper.GetComponent<ScoreKeeper>();
+            }
+            Debug.Log($"Finding Score Keeper {scoreKeeper.gameObject.name}");
+
+            List<AoAPlayer> aoaPlayers = new List<AoAPlayer>();
+            aoaPlayers = _gameController.UpdatePlayers();
+            foreach (AoAPlayer player in aoaPlayers)
+            {
+                scoreKeeper.UpdateRoundScore(player.Player.ActorNumber, player.FruitCount);
+            }
+
+            photonView.RPC("RankPlayersRPC", RpcTarget.AllBuffered, scoreKeeper.ScoreBoard);
+            yield return new WaitForSeconds(NetworkCustomSettings.SCORE_SCREEN_TIME);
+            // GameController.Instance.LoadNextLevel(nextLevel);
+            _gameController.LoadNextLevel(nextLevel);
         }
     }
 
     [PunRPC]
-    private void RankPlayers()
+    private void RankPlayersRPC(Dictionary<int, int> playerScores)
     {
         List<AoAPlayer> aoaPlayers = new List<AoAPlayer>();
-        aoaPlayers = GameController.Instance.UpdatePlayers();
+        // aoaPlayers = GameController.Instance.UpdatePlayers();
+        aoaPlayers = _gameController.UpdatePlayers();
         int rank = 1;
 
         _playerRankingScreen.SetActive(true);
 
         Debug.Log("Sorting Players by fruit collected");
+
+        foreach (KeyValuePair<int, int> score in playerScores)
+        {
+            aoaPlayers.Find(p => p.Player.ActorNumber == score.Key)?.SetCount(score.Value);
+        }
 
         aoaPlayers = aoaPlayers.OrderByDescending(p => p.FruitCount).ToList();
 
@@ -125,6 +150,9 @@ public class AoAGameManager : MonoBehaviourPun
             rankingGO.transform.SetParent(_playerRankings.transform);
             rankingGO.transform.localScale = Vector3.one;
             PlayerRank pr = rankingGO.GetComponent<PlayerRank>();
+            //scoreKeeper.UpdateRoundScore(player.Player.ActorNumber, player.FruitCount);
+            //pr.Initialize(rank, player.Name, scoreKeeper.GetStoredScore(player.Player.ActorNumber), player.Model);
+            //pr.Initialize(rank, player.Name, playerScores[player.Player.ActorNumber], player.Model);
             pr.Initialize(rank, player.Name, player.FruitCount, player.Model);
             rank++;
         }
@@ -133,6 +161,15 @@ public class AoAGameManager : MonoBehaviourPun
     public void LoadMainMenu()
     {
         StopAllCoroutines();
-        PhotonNetwork.LoadLevel(0);
+        PhotonNetwork.LoadLevel(NetworkCustomSettings.MAIN_MENU_SCENE);
+    }
+    // Call back if the master client leaves the room
+    public override void OnMasterClientSwitched(Player newMasterClient)
+    {
+        if (PhotonNetwork.LocalPlayer.ActorNumber == newMasterClient.ActorNumber && !_gameEnding)
+        {
+            GameObject scoreKeeper = Instantiate(new GameObject(), transform.position, Quaternion.identity);
+            scoreKeeper.AddComponent<ScoreKeeper>();
+        }
     }
 }
