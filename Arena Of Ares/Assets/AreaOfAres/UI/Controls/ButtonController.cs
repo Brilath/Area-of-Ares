@@ -12,7 +12,6 @@ namespace AreaOfAres.UI
         [SerializeField] private Vector3 _scaleUp;
         [SerializeField] private Vector3 _scaleDown;
         [SerializeField] private float _scaleTime;
-        [SerializeField] private Transform _image;
         [SerializeField] private AudioSource _audio;
 
         private Coroutine _coroutine;

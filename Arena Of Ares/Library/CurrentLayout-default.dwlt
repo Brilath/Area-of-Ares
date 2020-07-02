@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 544}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -45,7 +45,7 @@ MonoBehaviour:
     y: 0
     width: 1536
     height: 781
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 544}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -110,10 +110,10 @@ MonoBehaviour:
     y: 30
     width: 1536
     height: 731
-  m_MinSize: {x: 583, y: 344}
-  m_MaxSize: {x: 12008, y: 8044}
+  m_MinSize: {x: 577, y: 494}
+  m_MaxSize: {x: 14002, y: 14044}
   vertical: 1
-  controlID: 39
+  controlID: 62
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -135,10 +135,10 @@ MonoBehaviour:
     y: 0
     width: 1536
     height: 731
-  m_MinSize: {x: 583, y: 344}
-  m_MaxSize: {x: 12008, y: 8044}
+  m_MinSize: {x: 577, y: 494}
+  m_MaxSize: {x: 14002, y: 14044}
   vertical: 0
-  controlID: 40
+  controlID: 63
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -160,10 +160,10 @@ MonoBehaviour:
     y: 0
     width: 1246
     height: 731
-  m_MinSize: {x: 306, y: 344}
-  m_MaxSize: {x: 8006, y: 8044}
+  m_MinSize: {x: 302, y: 494}
+  m_MaxSize: {x: 10002, y: 14044}
   vertical: 1
-  controlID: 41
+  controlID: 64
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -185,10 +185,10 @@ MonoBehaviour:
     y: 0
     width: 1246
     height: 459
-  m_MinSize: {x: 306, y: 222}
-  m_MaxSize: {x: 8006, y: 4022}
+  m_MinSize: {x: 302, y: 222}
+  m_MaxSize: {x: 8002, y: 4022}
   vertical: 0
-  controlID: 42
+  controlID: 65
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -263,15 +263,15 @@ MonoBehaviour:
     y: 459
     width: 1246
     height: 272
-  m_MinSize: {x: 102, y: 122}
-  m_MaxSize: {x: 4002, y: 4022}
-  m_ActualView: {fileID: 19}
+  m_MinSize: {x: 232, y: 272}
+  m_MaxSize: {x: 10002, y: 10022}
+  m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
   - {fileID: 19}
   - {fileID: 20}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -291,15 +291,15 @@ MonoBehaviour:
     y: 0
     width: 290
     height: 731
-  m_MinSize: {x: 277, y: 122}
-  m_MaxSize: {x: 4002, y: 4022}
+  m_MinSize: {x: 275, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
   - {fileID: 22}
   - {fileID: 23}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 0
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -410,23 +410,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 20a6fcff
-      m_LastClickedID: -219616
-      m_ExpandedIDs: 20c4fcff48c4fcff3ecdfcffc4d1fcff2cd6fcff32d6fcffb2d7fcffe603fdff0c04fdff060dfdff8c11fdfff415fdfffa15fdff7a17fdffe07afdff087bfdfffe83fdff8488fdffec8cfdfff28cfdff728efdffa4d0fdffccd0fdffc2d9fdff48defdffb0e2fdffb6e2fdff36e4fdff7a03feffa003feff9a0cfeff2011feff8815feff8e15feff0e17feffcc5cfefff25cfeff0066feff866afeffee6efefff46efeff7470feff6c94feffe09dfeff069efefffca6feff82abfeffeaaffefff0affeff70b1feffe0bafeffd2befefff8befeffeec7feff74ccfeffdcd0feffe2d0feff62d2feff92e9feff4cf0feff30f9feff20fdfeff46fdfeff3c06ffffc20affff2a0fffff300fffffb010ffff0c20ffff4e21ffff7437ffff3442ffffb846ffff584bffff8452ffffc08bffffa6b3ffff40c9ffff16ddffff08e1ffff2ee1ffff40eaffffcaeeffff36f3ffff40f3ffffc6f4ffff66fbfffff4ffffff608000009a800000a28100007082000088820000d6820000208600001c9900005c9b00002a9c0000d29f0000da9f000006ef000034410100b24f01007c560100a2a0010034df0100c8e201005c2e0200
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: ac8dffffd28dfffff696ffff7c9bffffe49fffffe2a4ffff16a5ffffa6a9ffffcea9ffffeeb2ffff84b7fffffcbbffff0ac1ffff4ec1ffff60d3ffff66d3ffff82d3ffff5af3ffff68faffff28fbffff2049000052490000fa490000d44a0000c89f000014a100008ca20000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: SettingSlider(Clone)
+        m_OriginalName: SettingSlider(Clone)
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -1980
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 9}
       m_SearchString: 
@@ -902,20 +902,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Packages/com.unity.ugui/Runtime/EventSystem/InputModules
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Scenes
+  - Packages/com.unity.ugui/Runtime/EventSystem/InputModules
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\Brila\Desktop\Github\Area-of-Ares\Arena Of Ares
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 775}
-    m_SelectedIDs: 92450000
-    m_LastClickedID: 17810
-    m_ExpandedIDs: 0000000008300000a4310000b0320000703500007a36000080360000603b0000a63b0000103c0000123c00004e3c0000a23d0000a43d0000563e0000b83e0000fe3f00005a4100007441000078410000e2410000184300004043000052430000a0430000f44300007e4500009245000000ca9a3b
+    scrollPos: {x: 0, y: 366.49933}
+    m_SelectedIDs: 5a3d0000
+    m_LastClickedID: 15706
+    m_ExpandedIDs: 000000008a30000032330000f2350000fc36000002370000e43b00002a3c0000943c0000963c0000d23c0000263e0000283e0000da3e00003c3f000082400000de410000f8410000fc410000664200009c430000c4430000d64300002444000078440000024600001646000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -943,7 +943,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 1256}
     m_SelectedIDs: ce310000
     m_LastClickedID: 12750
-    m_ExpandedIDs: 0000000008300000a4310000b0320000703500007a36000080360000603b0000a63b0000103c0000123c00004e3c0000a23d0000a43d0000563e0000b83e0000fe3f00005a4100007441000078410000e2410000184300004043000052430000a0430000f44300007e45000092450000
+    m_ExpandedIDs: 000000008a3000002632000032330000f2350000fc36000002370000e43b00002a3c0000943c0000963c0000d23c0000263e0000283e0000da3e00003c3f000082400000de410000f8410000fc410000664200009c430000c4430000d643000024440000784400000246000016460000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1053,7 +1053,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -49674
+  m_LastSelectedObjectID: 27118
 --- !u!114 &21
 MonoBehaviour:
   m_ObjectHideFlags: 52

@@ -16,6 +16,7 @@ ScriptsOnlyBuild:
     - AreaOfAres.UI.SettingToggle
     - AreaOfAres.UI.SoundController
     - AreaOfAres.UI.SoundSettings
+    - AreaOfAres.UI.UIController
     - CursorController
     - DamageObject
     - DisplayPlayer
@@ -225,6 +226,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12112}
     - Class: 114
       Script: {instanceID: 12136}
+    - Class: 114
+      Script: {instanceID: 27110}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -380,6 +383,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12112}
     - Class: 114
       Script: {instanceID: 12136}
+    - Class: 114
+      Script: {instanceID: 27110}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -535,6 +540,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12112}
     - Class: 114
       Script: {instanceID: 12136}
+    - Class: 114
+      Script: {instanceID: 27110}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -692,6 +699,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12112}
     - Class: 114
       Script: {instanceID: 12136}
+    - Class: 114
+      Script: {instanceID: 27110}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -899,6 +908,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12104}
     - Class: 114
       Script: {instanceID: 12112}
+    - Class: 114
+      Script: {instanceID: 27110}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2390,7 +2401,7 @@ ScriptsOnlyBuild:
     className: GameManager
   - hash:
       serializedVersion: 2
-      Hash: a301ad02126106d8812cedb87e7112aa
+      Hash: 4f6dacd78f0efa09fff022a28d9cd925
     assemblyName: Assembly-CSharp.dll
     namespaceName: AreaOfAres.UI
     className: ButtonController
@@ -2646,6 +2657,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: d5a0952354540feed2aafc41fce7ee0e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: AreaOfAres.UI
+    className: UIController
   platform: 5
   scenePathNames:
   - Assets/Scenes/MainMenu.unity

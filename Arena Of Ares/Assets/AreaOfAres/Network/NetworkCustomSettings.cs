@@ -11,8 +11,8 @@ public class NetworkCustomSettings
     public const string SURVIVAL_MODE = "survival";
     public const int PLAYER_NAME_MIN = 1;
     public const int PLAYER_NAME_MAX = 10;
-    public const float GAME_TIME = 35;
-    public const float SCORE_SCREEN_TIME = 20;
+    public const float GAME_TIME = 90;
+    public const float SCORE_SCREEN_TIME = 10;
 
     // Player Custom Properties
     public const string PLAYER_LOCKED_IN = "playerLockedIn";
