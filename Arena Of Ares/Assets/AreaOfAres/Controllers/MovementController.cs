@@ -37,6 +37,7 @@ public class MovementController : MonoBehaviourPun
     [SerializeField] private float knockBackCounter;
     [SerializeField] private float knockBackPower;
     [SerializeField] private Vector2 knockBackForce;
+    [SerializeField] private Joystick joystick;
     private Rigidbody2D body;
     private PlayerSoundController soundController;
     private float playerInput;
@@ -46,6 +47,7 @@ public class MovementController : MonoBehaviourPun
 
     private void Awake()
     {
+        joystick = FindObjectOfType<Joystick>();
         body = GetComponent<Rigidbody2D>();
         soundController = GetComponent<PlayerSoundController>();
         dashCounter = dashCooldown;
@@ -53,7 +55,11 @@ public class MovementController : MonoBehaviourPun
 
     void Update()
     {
+#if UNITY_ANDROID
+        playerInput = joystick.Horizontal;
+#else
         playerInput = Input.GetAxis("Horizontal");
+#endif
 
         if (knockBackCounter <= 0)
         {

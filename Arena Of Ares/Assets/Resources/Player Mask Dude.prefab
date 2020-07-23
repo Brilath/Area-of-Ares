@@ -5745,6 +5745,7 @@ MonoBehaviour:
   knockBackCounter: 0
   knockBackPower: 3
   knockBackForce: {x: 0, y: 0}
+  joystick: {fileID: 0}
 --- !u!114 &1213968434031588552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5765,6 +5766,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 0}
   _isSpiritFlipped: 0
   dust: {fileID: 8510273478512773848}
+  joystick: {fileID: 0}
 --- !u!114 &5110218309382914400
 MonoBehaviour:
   m_ObjectHideFlags: 0

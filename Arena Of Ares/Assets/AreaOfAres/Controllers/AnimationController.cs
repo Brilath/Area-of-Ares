@@ -22,9 +22,11 @@ public class AnimationController : MonoBehaviourPun, IPunObservable
     [SerializeField] private ParticleSystem dust;
 
     private Rigidbody2D _body;
+    [SerializeField] private Joystick joystick;
 
     private void Awake()
     {
+        joystick = FindObjectOfType<Joystick>();
         _animator = GetComponent<Animator>();
         _body = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -35,7 +37,11 @@ public class AnimationController : MonoBehaviourPun, IPunObservable
     // Update is called once per frame
     void Update()
     {
+#if UNITY_ANDROID
+        _playerInput = joystick.Horizontal;
+#else
         _playerInput = Input.GetAxis("Horizontal");
+#endif
         SetSpriteDirection();
 
         _animator.SetFloat(_velocityX, _body.velocity.x);

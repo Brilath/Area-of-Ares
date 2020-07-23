@@ -62,9 +62,12 @@ public class AoAGameManager : MonoBehaviourPunCallbacks
             {
                 PhotonNetwork.Instantiate(_playerPrefabs[(int)playerSelection].name, startingPosition, Quaternion.identity);
             }
-
+#if UNITY_ANDROID
+            Debug.Log("Android no cursor");
+#else
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+#endif
         }
         else
         {

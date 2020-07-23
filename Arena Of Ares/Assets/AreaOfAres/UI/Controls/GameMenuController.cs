@@ -26,6 +26,9 @@ namespace AreaOfAres.UI
                     EventSystem.current.SetSelectedGameObject(null);
                     EventSystem.current.SetSelectedGameObject(_defaultOptionsButton);
                 }
+#if UNITY_ANDROID
+                Debug.Log("Android no cursor");
+#else
 
                 if (Cursor.lockState == CursorLockMode.None)
                 {
@@ -37,6 +40,8 @@ namespace AreaOfAres.UI
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                 }
+#endif
+
             }
         }
 
