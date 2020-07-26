@@ -11,10 +11,14 @@ public class PlayerSoundController : MonoBehaviour
 
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private bool _isPlaying;
+    [SerializeField] private Joystick _joystick;
     private bool onGround;
 
     private void Awake()
     {
+#if UNITY_ANDROID
+        _joystick = FindObjectOfType<Joystick>();
+#endif
         _audioSource = GetComponent<AudioSource>();
     }
 
@@ -24,7 +28,13 @@ public class PlayerSoundController : MonoBehaviour
     {
         if (!_isPlaying)
         {
-            float _playerInput = Input.GetAxis("Horizontal");
+            float _playerInput = 0;
+
+#if UNITY_ANDROID
+        _playerInput = _joystick.Horizontal;
+#else
+            _playerInput = Input.GetAxis("Horizontal");
+#endif
 
             if ((_playerInput > 0.01f || _playerInput < -0.01f) && onGround)
             {

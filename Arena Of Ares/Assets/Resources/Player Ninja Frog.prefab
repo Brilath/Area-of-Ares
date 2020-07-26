@@ -720,6 +720,7 @@ MonoBehaviour:
   knockBackCounter: 0
   knockBackPower: 3
   knockBackForce: {x: 0, y: 0}
+  joystick: {fileID: 0}
 --- !u!114 &3740381457549843964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -740,6 +741,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 0}
   _isSpiritFlipped: 0
   dust: {fileID: 1856015747140380955}
+  _joystick: {fileID: 0}
 --- !u!114 &5597664634341773862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,6 +810,7 @@ MonoBehaviour:
   _damageClip: {fileID: 8300000, guid: d22c4de06c8d08845a82ac83b8e9b865, type: 3}
   _audioSource: {fileID: 0}
   _isPlaying: 0
+  _joystick: {fileID: 0}
 --- !u!82 &7169212230769533299
 AudioSource:
   m_ObjectHideFlags: 0

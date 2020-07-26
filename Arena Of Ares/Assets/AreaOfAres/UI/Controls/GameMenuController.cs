@@ -18,7 +18,7 @@ namespace AreaOfAres.UI
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                SetActiveSetting(_keyBindsSettings);
+                //SetActiveSetting(_keyBindsSettings);
                 _gameOptions.SetActive(!_gameOptions.activeSelf);
 
                 if (_gameOptions.activeInHierarchy)
@@ -66,8 +66,12 @@ namespace AreaOfAres.UI
         {
             SetActiveSetting(_keyBindsSettings);
             _gameOptions.SetActive(false);
+#if UNITY_ANDROID
+            Debug.Log("Android no cursor");
+#else
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+#endif
         }
 
         private void SetActiveSetting(GameObject setting)

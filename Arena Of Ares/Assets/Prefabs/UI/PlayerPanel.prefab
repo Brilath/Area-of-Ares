@@ -550,7 +550,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -75, y: -0}
-  m_SizeDelta: {x: 30, y: 30}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7278837953776148510
 CanvasRenderer:
@@ -779,7 +779,6 @@ MonoBehaviour:
   _scaleUp: {x: 2.1, y: 2.1, z: 2.1}
   _scaleDown: {x: 2, y: 2, z: 2}
   _scaleTime: 0.25
-  _image: {fileID: 5006017769042664384}
   _audio: {fileID: 0}
 --- !u!1 &7278837954028424825
 GameObject:
@@ -925,7 +924,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 75, y: 0}
-  m_SizeDelta: {x: 30, y: 30}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7278837954390681337
 CanvasRenderer:
@@ -1154,7 +1153,6 @@ MonoBehaviour:
   _scaleUp: {x: 2.1, y: 2.1, z: 2.1}
   _scaleDown: {x: 2, y: 2, z: 2}
   _scaleTime: 0.25
-  _image: {fileID: 5006017769042664384}
   _audio: {fileID: 0}
 --- !u!1 &7278837954444251298
 GameObject:
@@ -1285,7 +1283,6 @@ MonoBehaviour:
   _scaleUp: {x: 2.1, y: 2.1, z: 2.1}
   _scaleDown: {x: 2, y: 2, z: 2}
   _scaleTime: 0.25
-  _image: {fileID: 5006017769042664384}
   _audio: {fileID: 0}
 --- !u!114 &2993919368832753527
 MonoBehaviour:

@@ -22,11 +22,13 @@ public class AnimationController : MonoBehaviourPun, IPunObservable
     [SerializeField] private ParticleSystem dust;
 
     private Rigidbody2D _body;
-    [SerializeField] private Joystick joystick;
+    [SerializeField] private Joystick _joystick;
 
     private void Awake()
     {
-        joystick = FindObjectOfType<Joystick>();
+#if UNITY_ANDROID
+        _joystick = FindObjectOfType<Joystick>();
+#endif
         _animator = GetComponent<Animator>();
         _body = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -38,7 +40,7 @@ public class AnimationController : MonoBehaviourPun, IPunObservable
     void Update()
     {
 #if UNITY_ANDROID
-        _playerInput = joystick.Horizontal;
+        _playerInput = _joystick.Horizontal;
 #else
         _playerInput = Input.GetAxis("Horizontal");
 #endif

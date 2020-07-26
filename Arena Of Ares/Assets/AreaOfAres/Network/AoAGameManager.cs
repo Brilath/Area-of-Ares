@@ -25,10 +25,14 @@ public class AoAGameManager : MonoBehaviourPunCallbacks
     [SerializeField] private float _gameTimeLeft;
     [SerializeField] private bool _gameEnding;
     [SerializeField] private GameController _gameController;
+    [SerializeField] private GameObject _mobileControls;
 
     private void Awake()
     {
         _gameController = GetComponent<GameController>();
+#if UNITY_ANDROID
+        _mobileControls.SetActive(true);
+#endif
     }
 
     // Start is called before the first frame update

@@ -51,6 +51,11 @@ public class MovementController : MonoBehaviourPun
         body = GetComponent<Rigidbody2D>();
         soundController = GetComponent<PlayerSoundController>();
         dashCounter = dashCooldown;
+        ActionButton.OnButtonAction += HandleOnButtonAction;
+    }
+    private void OnDestroy()
+    {
+        ActionButton.OnButtonAction -= HandleOnButtonAction;
     }
 
     void Update()
@@ -245,5 +250,18 @@ public class MovementController : MonoBehaviourPun
         body.velocity = new Vector2(0, 0);
         GetComponent<AnimationController>().PlayDust();
         body.AddForce(force, ForceMode2D.Impulse);
+    }
+
+    private void HandleOnButtonAction(string action)
+    {
+        if (action.CompareTo("jump") == 0)
+        {
+
+            desiredJump |= true;
+        }
+        else if (action.CompareTo("roll") == 0)
+        {
+            desiredDash |= true;
+        }
     }
 }

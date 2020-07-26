@@ -18,7 +18,8 @@ public class Fruit : MonoBehaviourPun
         if (other.gameObject.tag == "Player")
         {
             FruitBasket fruitBasket = other.gameObject.GetComponent<FruitBasket>();
-            if (fruitBasket != null && photonView.IsMine)
+            //if (fruitBasket != null && photonView.IsMine)
+            if (fruitBasket != null && other.gameObject.GetComponent<PhotonView>().IsMine)
             {
                 fruitBasket.Modify(Amount);
             }
