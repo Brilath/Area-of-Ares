@@ -13573,11 +13573,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mobile Controls
       objectReference: {fileID: 0}
-    - target: {fileID: 74536454872102915, guid: 24bf41dda5afb894a8dab0c75fc6b9fb,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 74536454872102924, guid: 24bf41dda5afb894a8dab0c75fc6b9fb,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -75,6 +75,8 @@ public class AoAGameManager : MonoBehaviourPunCallbacks
         }
         else
         {
+            ScoreKeeper scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper>();
+            if (scoreKeeper != null) Destroy(scoreKeeper.gameObject);
             _gameController.LoadNextLevel(0);
         }
     }
@@ -126,6 +128,10 @@ public class AoAGameManager : MonoBehaviourPunCallbacks
             }
 
             photonView.RPC("RankPlayersRPC", RpcTarget.AllBuffered, scoreKeeper.ScoreBoard);
+            if (nextLevel == 0)
+            {
+                Destroy(scoreKeeper.gameObject);
+            }
             yield return new WaitForSeconds(NetworkCustomSettings.SCORE_SCREEN_TIME);
             // GameController.Instance.LoadNextLevel(nextLevel);
             _gameController.LoadNextLevel(nextLevel);
@@ -168,6 +174,8 @@ public class AoAGameManager : MonoBehaviourPunCallbacks
     public void LoadMainMenu()
     {
         StopAllCoroutines();
+        ScoreKeeper scoreKeeper = GameObject.FindObjectOfType<ScoreKeeper>();
+        if (scoreKeeper != null) Destroy(scoreKeeper.gameObject);
         PhotonNetwork.LoadLevel(NetworkCustomSettings.MAIN_MENU_SCENE);
     }
     // Call back if the master client leaves the room
