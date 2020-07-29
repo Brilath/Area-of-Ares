@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using System;
+using TMPro;
 
 public class MovementController : MonoBehaviourPun
 {
@@ -25,6 +26,8 @@ public class MovementController : MonoBehaviourPun
     [SerializeField, Range(0, 5)]
     private int maxAirJumps = 0;
     [SerializeField] private int jumpPhase;
+    [SerializeField] private float jumpGCD = .1f;
+    [SerializeField] private float jumpGCDCounter = .1f;
     [Header("Dash")]
     [SerializeField] private bool desiredDash;
     [SerializeField] private Vector2 dashPower;
@@ -32,6 +35,8 @@ public class MovementController : MonoBehaviourPun
     [SerializeField] private float dashCounter = 0f;
     [SerializeField, Range(0, 5)] private int maxDashes = 0;
     [SerializeField] private int dashPhase;
+    [SerializeField] private float dashGCD = .1f;
+    [SerializeField] private float dashGCDCounter = .1f;
     [Header("Knockback")]
     [SerializeField] private float knockBackLength;
     [SerializeField] private float knockBackCounter;
@@ -41,6 +46,9 @@ public class MovementController : MonoBehaviourPun
     private Rigidbody2D body;
     private PlayerSoundController soundController;
     private float playerInput;
+    private Touch touch;
+    private float touchDirection;
+    [SerializeField] private TextMeshProUGUI textTouch;
 
     // Events
     public event Action<int> Dashing = delegate { };
@@ -61,7 +69,58 @@ public class MovementController : MonoBehaviourPun
     void Update()
     {
 #if UNITY_ANDROID
-        playerInput = joystick.Horizontal;
+        //playerInput = joystick.Horizontal;
+        if (Input.touchCount > 0)
+        {
+            foreach (Touch t in Input.touches)
+            {
+                if (t.position.x < Screen.width / 2)
+                {
+                    //textTouch.text = t.deltaPosition.x.ToString();
+                    if (t.phase == TouchPhase.Moved && Mathf.Abs(t.deltaPosition.x) > 1.0)
+                    {
+                        touchDirection = t.deltaPosition.x;
+                        playerInput = touchDirection;
+                    }
+                    else if (t.phase != TouchPhase.Stationary && Mathf.Abs(t.deltaPosition.x) < 1.0)
+                    {
+                        playerInput = touchDirection;
+                    }
+                    else if (t.phase == TouchPhase.Canceled || t.phase == TouchPhase.Ended)
+                    {
+                        touchDirection = 0;
+                    }
+                }
+                else
+                {
+                    playerInput = touchDirection;
+                }
+                // Dash
+                if (t.position.x > Screen.width / 2 &&
+                    t.position.y > Screen.height / 2)
+                {
+                    if (dashGCDCounter <= 0)
+                    {
+                        desiredDash |= true;
+                        dashGCDCounter = dashGCD;
+                    }
+                }
+                // Jump
+                if (t.position.x > Screen.width / 2 &&
+                    t.position.y < Screen.height / 2)
+                {
+                    if (jumpGCDCounter <= 0)
+                    {
+                        desiredJump |= true;
+                        jumpGCDCounter = jumpGCD;
+                    }
+                }
+            }
+        }
+        else
+        {
+            playerInput = 0;
+        }
 #else
         playerInput = Input.GetAxis("Horizontal");
 #endif
@@ -84,6 +143,14 @@ public class MovementController : MonoBehaviourPun
         else
         {
             knockBackCounter -= Time.deltaTime;
+        }
+        if (jumpGCDCounter > 0)
+        {
+            jumpGCDCounter -= Time.deltaTime;
+        }
+        if (dashGCDCounter > 0)
+        {
+            dashGCDCounter -= Time.deltaTime;
         }
 
         UpdateDashState();

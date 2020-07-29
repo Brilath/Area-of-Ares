@@ -23,11 +23,12 @@ public class AnimationController : MonoBehaviourPun, IPunObservable
 
     private Rigidbody2D _body;
     [SerializeField] private Joystick _joystick;
+    private float touchDirection;
 
     private void Awake()
     {
 #if UNITY_ANDROID
-        _joystick = FindObjectOfType<Joystick>();
+        //_joystick = FindObjectOfType<Joystick>();
 #endif
         _animator = GetComponent<Animator>();
         _body = GetComponent<Rigidbody2D>();
@@ -40,7 +41,37 @@ public class AnimationController : MonoBehaviourPun, IPunObservable
     void Update()
     {
 #if UNITY_ANDROID
-        _playerInput = _joystick.Horizontal;
+        //_playerInput = _joystick.Horizontal;
+        if (Input.touchCount > 0)
+        {
+            foreach (Touch t in Input.touches)
+            {
+                if (t.position.x < Screen.width / 2)
+                {
+                    if (t.phase == TouchPhase.Moved && Mathf.Abs(t.deltaPosition.x) > 1.0)
+                    {
+                        touchDirection = t.deltaPosition.x;
+                        _playerInput = touchDirection;
+                    }
+                    else if (t.phase != TouchPhase.Stationary && Mathf.Abs(t.deltaPosition.x) < 1.0)
+                    {
+                        _playerInput = touchDirection;
+                    }
+                    else if (t.phase == TouchPhase.Canceled || t.phase == TouchPhase.Ended)
+                    {
+                        touchDirection = 0;
+                    }
+                }
+                else
+                {
+                    _playerInput = touchDirection;
+                }
+            }
+        }
+        else
+        {
+            _playerInput = 0;
+        }
 #else
         _playerInput = Input.GetAxis("Horizontal");
 #endif
