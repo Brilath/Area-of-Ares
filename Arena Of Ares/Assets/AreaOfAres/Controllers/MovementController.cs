@@ -77,12 +77,12 @@ public class MovementController : MonoBehaviourPun
                 if (t.position.x < Screen.width / 2)
                 {
                     //textTouch.text = t.deltaPosition.x.ToString();
-                    if (t.phase == TouchPhase.Moved && Mathf.Abs(t.deltaPosition.x) > 1.0)
+                    if (t.phase == TouchPhase.Moved && Mathf.Abs(t.deltaPosition.x) > 2.0)
                     {
                         touchDirection = t.deltaPosition.x;
                         playerInput = touchDirection;
                     }
-                    else if (t.phase != TouchPhase.Stationary && Mathf.Abs(t.deltaPosition.x) < 1.0)
+                    else if (t.phase != TouchPhase.Stationary && Mathf.Abs(t.deltaPosition.x) <= 2.0)
                     {
                         playerInput = touchDirection;
                     }
